@@ -91,7 +91,7 @@ Open an issue or PR.
 
 **John Aselton**  
 Founder, Nova Schola  
-[john@aselton.com](mailto:john@aselton.com)
+[john@novaschola.io](mailto:john@novaschola.io)
 
 ## Acknowledgments
 
