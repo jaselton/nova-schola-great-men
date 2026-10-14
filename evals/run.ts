@@ -135,8 +135,9 @@ async function main(): Promise<void> {
     }
     addUsage(judgeUsage, judged.usage);
     const verdict = judged.verdict;
-    const passed = verdict ? verdict.criteria.filter((x) => x.pass).length : 0;
     const total = c.rubric.length;
+    // A judge occasionally grades the rubric twice; score by rubric position, never above the rubric size.
+    const passed = verdict ? Math.min(verdict.criteria.slice(0, total).filter((x) => x.pass).length, total) : 0;
     const figureHit = c.expectedFigures.length === 0 || reply.toolCalls.some((t) => c.expectedFigures.some((f) => JSON.stringify(t.input).toLowerCase().includes(f.split("-")[0]!)));
     const modeHit = verdict?.modeObserved === c.expectedMode;
     console.log(
