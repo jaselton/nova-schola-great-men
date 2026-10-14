@@ -6,7 +6,7 @@
  * the Claude API accepts - never append date suffixes.
  */
 
-export type ModelTier = "tutor" | "fast" | "classifier" | "frontier";
+export type ModelTier = "tutor" | "fast" | "classifier" | "frontier" | "codex";
 
 export type Effort = "low" | "medium" | "high" | "xhigh" | "max";
 
@@ -58,6 +58,17 @@ export const MODELS: Record<ModelTier, ModelSpec> = {
     apiDefaultEffort: "medium",
     serverFallback: false,
     role: "Trivium-mode classification, eval judging and other small structured tasks.",
+  },
+  codex: {
+    tier: "codex",
+    id: "gpt-6-astra",
+    label: "OpenAI Codex (gpt-6-astra)",
+    inputPerMTok: 0,
+    outputPerMTok: 0,
+    cacheReadPerMTok: 0,
+    apiDefaultEffort: "medium",
+    serverFallback: false,
+    role: "Runs the tutor through the local Codex CLI with its own login; the library is served over MCP. Billed by the ChatGPT plan, not per token.",
   },
   frontier: {
     tier: "frontier",

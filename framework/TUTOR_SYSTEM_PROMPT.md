@@ -105,6 +105,10 @@ These are the v2 examples; they remain the target behaviour and are mirrored in 
 
 ---
 
+## Other runtimes
+
+The prompt is model-agnostic text. `buildCodexPrompt()` in `src/inference/codex.ts` wraps the same system blocks, student context and transcript into a single task prompt for OpenAI Codex, and `src/mcp/server.ts` serves the same six tools over MCP so a Codex session calls the identical functions the Claude tutor calls directly. Any other MCP-capable runtime can be wired the same way.
+
 ## Hosting
 
 `examples/netlify-tutor.ts` replaces the v2 implementation notes for `tutor.js`: the function is stateless, the client carries `TutorState` between turns, and the corpus is bundled with the function via `included_files`.

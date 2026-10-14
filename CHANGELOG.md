@@ -10,6 +10,8 @@ The inference layer.
 - **CLI** `nova-tutor`: `models`, `build`, `search`, `show`, `prompt`, `ask`, `chat`, `generate`, `review`.
 - **Pipelines.** `generate` drafts a new figure (research essay + six profile files + `meta.json`) in the house style against a cached exemplar; `review` produces a structured factual, age-calibration and template review of any figure.
 - **Evals.** Twelve rubric-graded cases and a Haiku-judged runner.
+- **Codex backend.** `backend: "codex"` / `--backend codex` runs each turn through the local OpenAI Codex CLI (`codex exec`, ignoring user config, ephemeral, read-only sandbox) with the library served over MCP; transcript replayed per turn so session state stays serializable. Transient Codex transport errors are warnings, not failures.
+- **MCP server.** `src/mcp/server.ts` (`great-men-mcp` bin) exposes the six library tools to any MCP client, annotated read-only.
 - **Hosting example.** `examples/netlify-tutor.ts`, stateless.
 - **Docs.** `framework/TRIVIUM_ARCHITECTURE.md` (the February 2026 design, now in the repo), `framework/TUTOR_SYSTEM_PROMPT.md` v3, README rewrite.
 

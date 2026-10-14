@@ -49,7 +49,8 @@ Student options (ask/chat)
   --age N  --band B  --name N  --subject S  --topic T  --parent
   --strengths "a;b"  --challenges "a;b"  --summary "previous sessions"
 Model options
-  --model tutor|fast|frontier|<id>  --effort low|medium|high|xhigh|max
+  --model tutor|fast|frontier|codex|<id>  --effort low|medium|high|xhigh|max
+  --backend anthropic|codex      codex = run turns through the local OpenAI Codex CLI (its own login; library over MCP)
   --no-tools  --no-fallbacks  --thinking  --classify  --json  --verbose
 `;
 
@@ -71,6 +72,7 @@ const { values: v, positionals } = parseArgs({
     challenges: { type: "string" },
     summary: { type: "string" },
     model: { type: "string" },
+    backend: { type: "string" },
     effort: { type: "string" },
     "no-tools": { type: "boolean", default: false },
     "no-fallbacks": { type: "boolean", default: false },
@@ -112,8 +114,10 @@ function studentFromFlags(): StudentProfile {
 }
 
 function tutorOptions(): TutorOptions {
+  if (v.backend && v.backend !== "anthropic" && v.backend !== "codex") fail(`--backend must be anthropic or codex, not ${v.backend}`);
   return {
     model: v.model,
+    backend: v.backend as TutorOptions["backend"],
     effort: v.effort as Effort | undefined,
     tools: !v["no-tools"],
     fallbacks: !v["no-fallbacks"],
@@ -216,7 +220,7 @@ async function main(): Promise<void> {
     case "chat": {
       const student = studentFromFlags();
       const tutor = new Tutor(student, tutorOptions());
-      console.error(`Nova Schola tutor — ${tutor.model.label}, band ${BANDS[tutor.band].label}${student.parentMode ? ", parent mode" : ""}. /state to dump, /quit to leave.`);
+      console.error(`Nova Schola tutor — ${tutor.model.label} via ${tutor.backend}, band ${BANDS[tutor.band].label}${student.parentMode ? ", parent mode" : ""}. /state to dump, /quit to leave.`);
       const rl = createInterface({ input: stdin, output: stdout });
       try {
         for (;;) {

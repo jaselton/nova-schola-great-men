@@ -29,7 +29,8 @@ framework/                  GREAT_MAN_FRAMEWORK.md, PROFILE_TEMPLATE.md,
                             TRIVIUM_ARCHITECTURE.md, TUTOR_SYSTEM_PROMPT.md
 data/great-men.json         the corpus as structured data (generated; committed)
 src/corpus/                 markdown parser, search, JSON builder
-src/inference/              models, developmental bands, system prompt, tools, router, Tutor
+src/inference/              models, developmental bands, system prompt, tools, router, Tutor, Codex backend
+src/mcp/server.ts           the library tools as an MCP server (stdio) for Codex or any MCP client
 src/pipeline/               generate a new figure; review an existing one
 src/cli.ts                  nova-tutor command line
 evals/                      rubric-graded eval cases and runner
@@ -105,8 +106,27 @@ The band is derived from `age` unless set explicitly. Bands are parameters, not 
 | `fast` | `claude-sonnet-5-5` | Lower-latency tutor tier for high-volume chat once the prompt is evaluated. |
 | `classifier` | `claude-haiku-5-5` | Trivium-mode classification and eval judging. |
 | `frontier` | `claude-fable-5-1` | Opt-in for drafting new research essays where depth matters more than cost. |
+| `codex` | `gpt-6-astra` via the Codex CLI | The same tutor run through OpenAI Codex with its own login; the library is served over MCP. |
 
 Pick a tier or any model id with `--model` on the CLI or `model` in `TutorOptions`.
+
+### Running on OpenAI Codex
+
+If the machine has the Codex CLI signed in (`codex login`) but no Anthropic key, run the same tutor through Codex:
+
+```bash
+npx tsx src/cli.ts chat --age 12 --backend codex                    # default model gpt-6-astra
+npx tsx src/cli.ts ask "Who was Alexander?" --age 8 --backend codex --verbose
+npm run eval -- --backend codex --limit 3                           # tutor and judge both through Codex
+```
+
+Each turn is one non-interactive `codex exec`: `--ignore-user-config` (no plugins, personality or personal MCP servers), an ephemeral session, a read-only sandbox and an empty working directory. The tutor instructions, student context and transcript go in as the prompt; the six library tools are served to Codex over MCP by `src/mcp/server.ts`, annotated read-only so Codex runs them without approval prompts; the final agent message is the reply. Codex does not stream tokens, so a reply lands whole after roughly 20–60 seconds, and usage is billed to the ChatGPT plan rather than per token. This backend is for local and development use; serverless hosting needs the Claude API path.
+
+The MCP server stands on its own for any MCP client:
+
+```bash
+node dist/mcp/server.js        # env: GREAT_MEN_ROOT, GREAT_MEN_AGE_RANGE (8-10 | 11-14 | 15-18)
+```
 
 ### What the tutor does and will not do
 
@@ -133,7 +153,7 @@ const state = tutor.toState();           // JSON-serializable; send to the clien
 const later = Tutor.fromState(state);    // resume on any host
 ```
 
-Lower-level pieces are exported too: `loadCorpus`, `findProfile`, `findExempla`, `buildSystemPrompt`, `makeTutorTools`, `detectModeHeuristic`, `classifyMode`, `bandForAge`, `MODELS`.
+Pass `backend: "codex"` to run the same session through the Codex CLI. Lower-level pieces are exported too: `loadCorpus`, `findProfile`, `findExempla`, `buildSystemPrompt`, `makeTutorTools`, `detectModeHeuristic`, `classifyMode`, `bandForAge`, `MODELS`, `runCodexTurn`.
 
 ## Hosting
 
@@ -157,7 +177,7 @@ A generated figure carries `profiles/<slug>/meta.json` so the parser picks it up
 
 ## Evals
 
-`evals/cases.json` holds twelve rubric-graded cases across the four bands and three modes, including parent mode, an off-library figure, and a lazy-answer probe. `npm run eval` plays each through the tutor and grades it with Claude Haiku 5.5 as judge, reporting rubric hits, trivium-mode agreement, whether the expected figure was consulted, and leaks (flattery, markdown, tool mentions, missing forward motion). Results land in `evals/results/`. Each run costs money; use `--only` and `--limit` while iterating.
+`evals/cases.json` holds twelve rubric-graded cases across the four bands and three modes, including parent mode, an off-library figure, and a lazy-answer probe. `npm run eval` plays each through the tutor and grades it with Claude Haiku 5.5 as judge (or the Codex model with `--backend codex`), reporting rubric hits, trivium-mode agreement, whether the expected figure was consulted, and leaks (flattery, markdown, tool mentions, missing forward motion). Results land in `evals/results/`. Each run costs money; use `--only` and `--limit` while iterating.
 
 ## The 25 Figures
 

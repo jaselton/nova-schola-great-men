@@ -15,6 +15,7 @@ import type { Corpus } from "../corpus/types.js";
 import { BANDS, bandForAge, type Band } from "./bands.js";
 import { addUsage, emptyUsage, FALLBACK_BETA, resolveModel, type Effort, type ModelSpec, type UsageTotals } from "./models.js";
 import { buildSystemPrompt, PROMPT_VERSION, studentContextBlock, type StudentContext } from "./prompt.js";
+import { buildCodexPrompt, runCodexTurn, type CodexTurnOptions } from "./codex.js";
 import { classifyMode, detectModeHeuristic, type ModeGuess } from "./router.js";
 import { makeTutorTools, type TutorTool } from "./tools.js";
 
@@ -39,7 +40,13 @@ export interface StudentProfile {
   parentMode?: boolean;
 }
 
+export type TutorBackend = "anthropic" | "codex";
+
 export interface TutorOptions {
+  /** "anthropic" (default) calls the Claude API; "codex" runs each turn through the local OpenAI Codex CLI. */
+  backend?: TutorBackend;
+  /** Codex-only settings (binary path, timeout, extra config). */
+  codex?: Omit<CodexTurnOptions, "model" | "effort" | "root" | "defaultAgeRange" | "tools">;
   client?: Anthropic;
   corpus?: Corpus;
   /** Repo root that holds profiles/ and research/ (defaults to this package). */
@@ -95,6 +102,7 @@ export interface TutorState {
   student: StudentProfile;
   band: Band;
   model: string;
+  backend?: TutorBackend;
   messages: BetaMessageParam[];
   turns: TurnRecord[];
   usage: UsageTotals;
@@ -114,13 +122,14 @@ export class Tutor {
   readonly student: StudentProfile;
   readonly band: Band;
   readonly model: ModelSpec;
+  readonly backend: TutorBackend;
   readonly effort: Effort;
   readonly corpus: Corpus;
   readonly turns: TurnRecord[] = [];
   usage: UsageTotals = emptyUsage();
   messages: BetaMessageParam[] = [];
 
-  private readonly client: Anthropic;
+  private clientInstance?: Anthropic;
   private readonly tools: TutorTool[];
   private readonly system: Anthropic.Beta.Messages.BetaTextBlockParam[];
   private readonly options: TutorOptions;
@@ -129,10 +138,10 @@ export class Tutor {
     this.student = student;
     this.options = options;
     this.band = student.band ?? bandForAge(student.age ?? 12);
-    this.model = resolveModel(options.model);
+    this.model = resolveModel(options.model ?? (options.backend === "codex" ? "codex" : undefined));
+    this.backend = options.backend ?? (this.model.tier === "codex" ? "codex" : "anthropic");
     this.effort = options.effort ?? BANDS[this.band].effort;
     this.corpus = options.corpus ?? loadCorpus(options.root ?? REPO_ROOT);
-    this.client = options.client ?? new Anthropic();
     this.tools =
       options.tools === false
         ? []
@@ -143,9 +152,17 @@ export class Tutor {
     });
   }
 
+  /** The Claude client, created on first use so the Codex backend never needs Anthropic credentials. */
+  private get client(): Anthropic {
+    return (this.clientInstance ??= this.options.client ?? new Anthropic());
+  }
+
   /** Rebuild a tutor from serialized state (same model, band and prompt version). */
   static fromState(state: TutorState, options: TutorOptions = {}): Tutor {
-    const tutor = new Tutor({ ...state.student, band: state.band }, { ...options, model: options.model ?? state.model });
+    const tutor = new Tutor(
+      { ...state.student, band: state.band },
+      { ...options, model: options.model ?? state.model, backend: options.backend ?? state.backend },
+    );
     tutor.messages = state.messages;
     tutor.turns.push(...state.turns);
     tutor.usage = { ...state.usage };
@@ -159,6 +176,7 @@ export class Tutor {
       student: this.student,
       band: this.band,
       model: this.model.id,
+      backend: this.backend,
       messages: this.messages,
       turns: this.turns,
       usage: this.usage,
@@ -224,6 +242,7 @@ export class Tutor {
 
   /** Send one student (or parent) turn and return the tutor's reply. */
   async reply(userText: string, options: ReplyOptions = {}): Promise<TutorReply> {
+    if (this.backend === "codex") return this.replyViaCodex(userText, options);
     const ctx: StudentContext = { ...this.student, band: this.band };
     const content: BetaContentBlockParam[] = [];
     if (this.messages.length === 0) content.push({ type: "text", text: studentContextBlock(ctx) });
@@ -290,5 +309,38 @@ export class Tutor {
     const servedBy = message.model;
     this.turns.push({ student: userText, tutor: text, mode, toolCalls, servedBy });
     return { text, mode, stopReason: message.stop_reason, refused, servedBy, toolCalls, usage: turnUsage };
+  }
+
+  /** Codex backend: one `codex exec` per turn, transcript replayed, library served over MCP. */
+  private async replyViaCodex(userText: string, options: ReplyOptions): Promise<TutorReply> {
+    const ctx: StudentContext = { ...this.student, band: this.band };
+    const prompt = buildCodexPrompt({
+      systemText: this.system.map((b) => b.text).join("\n\n"),
+      studentContext: studentContextBlock(ctx),
+      transcript: this.turns.map((t) => ({ student: t.student, tutor: t.tutor })),
+      userText,
+      tools: this.tools.length > 0,
+    });
+    const turn = await runCodexTurn(prompt, {
+      ...this.options.codex,
+      model: this.model.id,
+      effort: this.effort,
+      root: this.options.root ?? REPO_ROOT,
+      defaultAgeRange: BANDS[this.band].lessonRange,
+      tools: this.tools.length > 0,
+    });
+    const text = turn.text || REFUSAL_TEXT;
+    options.onText?.(text);
+    this.messages.push({ role: "user", content: userText }, { role: "assistant", content: text });
+    addUsage(this.usage, {
+      input_tokens: turn.usage.inputTokens,
+      output_tokens: turn.usage.outputTokens,
+      cache_read_input_tokens: turn.usage.cacheReadTokens,
+      cache_creation_input_tokens: turn.usage.cacheWriteTokens,
+    });
+    const mode = detectModeHeuristic(userText);
+    const servedBy = turn.model;
+    this.turns.push({ student: userText, tutor: text, mode, toolCalls: turn.toolCalls, servedBy });
+    return { text, mode, stopReason: "end_turn", refused: !turn.text, servedBy, toolCalls: turn.toolCalls, usage: turn.usage };
   }
 }

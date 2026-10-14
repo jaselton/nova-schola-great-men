@@ -1,7 +1,7 @@
 {
   "name": "@nova-schola/great-men",
   "version": "0.2.0",
-  "description": "Great Men: 25 classical-formation profiles plus a Claude-powered Trivium tutor inference layer for Nova Schola.",
+  "description": "Great Men: 25 classical-formation profiles plus a Trivium tutor inference layer for Nova Schola on Claude 5 (default) or OpenAI Codex, with the library served over MCP.",
   "type": "module",
   "license": "MIT",
   "author": "John Aselton <john@novaschola.io>",
@@ -22,7 +22,8 @@
     "./data/great-men.json": "./data/great-men.json"
   },
   "bin": {
-    "nova-tutor": "./dist/cli.js"
+    "nova-tutor": "./dist/cli.js",
+    "great-men-mcp": "./dist/mcp/server.js"
   },
   "files": [
     "dist",
@@ -40,10 +41,12 @@
     "test": "vitest run",
     "tutor": "tsx src/cli.ts",
     "eval": "tsx evals/run.ts",
-    "prepublishOnly": "npm run build:data && npm run build"
+    "prepublishOnly": "npm run build:data && npm run build",
+    "mcp": "tsx src/mcp/server.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.133.0",
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "zod": "^4.6.7"
   },
   "devDependencies": {
