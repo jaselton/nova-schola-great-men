@@ -93,9 +93,29 @@ describe("Tutor on the codex backend", () => {
     expect(resumed.backend).toBe("codex");
     expect(resumed.turns.length).toBe(2);
   });
-  it("surfaces a failed codex run", async () => {
-    const runner: CodexRunner = async () => ({ stdout: "", stderr: "codex: not logged in\n", code: 1 });
+  it("surfaces a failed codex run without retrying a login problem", async () => {
+    let calls = 0;
+    const runner: CodexRunner = async () => {
+      calls++;
+      return { stdout: "", stderr: "codex: not logged in\n", code: 1 };
+    };
     await expect(runCodexTurn("hi", { runner })).rejects.toThrow(/not logged in/);
+    expect(calls).toBe(1);
+  });
+  it("retries once after a silent timeout and passes the idle timeout to the runner", async () => {
+    const seen: number[] = [];
+    let calls = 0;
+    const runner: CodexRunner = async (_args, _stdin, o) => {
+      seen.push(o.idleTimeoutMs);
+      calls++;
+      if (calls === 1) return { stdout: JSON.stringify({ type: "thread.started", thread_id: "t" }) + "\n", stderr: "", code: null, timedOut: true };
+      return { stdout: SAMPLE, stderr: "", code: 0 };
+    };
+    const turn = await runCodexTurn("hi", { runner, idleTimeoutMs: 1234 });
+    expect(turn.text).toMatch(/shadow/);
+    expect(calls).toBe(2);
+    expect(seen).toEqual([1234, 1234]);
+    await expect(runCodexTurn("hi", { runner: async () => ({ stdout: "", stderr: "", code: null, timedOut: true }), retries: 0 })).rejects.toThrow(/timed out \(attempt 1\/1\)/);
   });
 });
 

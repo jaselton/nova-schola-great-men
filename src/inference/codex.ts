@@ -31,7 +31,11 @@ export interface CodexRunResult {
 }
 
 /** Spawns codex; injectable so the backend can be tested without the CLI. */
-export type CodexRunner = (args: string[], stdin: string, opts: { cwd: string; timeoutMs: number; codexPath: string }) => Promise<CodexRunResult>;
+export type CodexRunner = (
+  args: string[],
+  stdin: string,
+  opts: { cwd: string; timeoutMs: number; idleTimeoutMs: number; codexPath: string },
+) => Promise<CodexRunResult>;
 
 export interface CodexTurnOptions {
   /** Codex model name passed with -m (default gpt-6-astra). */
@@ -44,7 +48,12 @@ export interface CodexTurnOptions {
   codexPath?: string;
   /** JSON Schema for the final message (--output-schema). */
   outputSchema?: Record<string, unknown>;
+  /** Hard ceiling per attempt (default 420 s). */
   timeoutMs?: number;
+  /** Kill an attempt when stdout has been silent this long (default 150 s); Codex emits nothing during a stalled connection. */
+  idleTimeoutMs?: number;
+  /** Extra attempts after a timeout or an empty reply (default 1). */
+  retries?: number;
   runner?: CodexRunner;
   /** Working directory for the agent; defaults to an empty temp dir so there is nothing to explore. */
   cwd?: string;
@@ -132,24 +141,32 @@ export function codexArgs(opts: CodexTurnOptions & { cwd: string; schemaPath?: s
   return args;
 }
 
-export const defaultCodexRunner: CodexRunner = (args, stdin, { cwd, timeoutMs, codexPath }) =>
+export const defaultCodexRunner: CodexRunner = (args, stdin, { cwd, timeoutMs, idleTimeoutMs, codexPath }) =>
   new Promise((resolvePromise, reject) => {
     const child = spawn(codexPath, args, { cwd, stdio: ["pipe", "pipe", "pipe"], env: process.env });
     let stdout = "";
     let stderr = "";
     let timedOut = false;
-    const timer = setTimeout(() => {
+    const kill = () => {
       timedOut = true;
       child.kill("SIGKILL");
-    }, timeoutMs);
-    child.stdout.on("data", (d: Buffer) => (stdout += d.toString()));
+    };
+    const timer = setTimeout(kill, timeoutMs);
+    let idle = setTimeout(kill, idleTimeoutMs);
+    child.stdout.on("data", (d: Buffer) => {
+      stdout += d.toString();
+      clearTimeout(idle);
+      idle = setTimeout(kill, idleTimeoutMs);
+    });
     child.stderr.on("data", (d: Buffer) => (stderr += d.toString()));
     child.on("error", (err) => {
       clearTimeout(timer);
+      clearTimeout(idle);
       reject(err.message.includes("ENOENT") ? new Error(`codex binary not found at "${codexPath}". Install the Codex CLI and run \`codex login\`.`) : err);
     });
     child.on("close", (code) => {
       clearTimeout(timer);
+      clearTimeout(idle);
       resolvePromise({ stdout, stderr, code, timedOut });
     });
     child.stdin.end(stdin);
@@ -300,20 +317,32 @@ export async function runCodexTurn(prompt: string, opts: CodexTurnOptions = {}):
   const args = codexArgs({ ...opts, cwd, schemaPath });
   const runner = opts.runner ?? defaultCodexRunner;
   const model = opts.model ?? CODEX_DEFAULT_MODEL;
-  const timeoutMs = opts.timeoutMs ?? 300_000;
-  const started = Date.now();
-  const result = await runner(args, prompt, { cwd, timeoutMs, codexPath: opts.codexPath ?? "codex" });
-  const events = parseCodexEvents(result.stdout);
-  logCodexTurn(args, prompt, result, Date.now() - started);
-  if (result.timedOut) {
-    throw new Error(`codex exec timed out after ${timeoutMs} ms; events so far: ${describeEvents(events) || "none"}`);
+  const timeoutMs = opts.timeoutMs ?? 420_000;
+  const idleTimeoutMs = opts.idleTimeoutMs ?? 150_000;
+  const attempts = 1 + Math.max(opts.retries ?? 1, 0);
+  let lastError: Error | undefined;
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    const started = Date.now();
+    const result = await runner(args, prompt, { cwd, timeoutMs, idleTimeoutMs, codexPath: opts.codexPath ?? "codex" });
+    const events = parseCodexEvents(result.stdout);
+    logCodexTurn(args, prompt, result, Date.now() - started);
+    try {
+      if (result.timedOut) {
+        throw new Error(`codex exec timed out (attempt ${attempt}/${attempts}); events so far: ${describeEvents(events) || "none"}`);
+      }
+      if (result.code !== 0 && events.length === 0) {
+        throw new Error(`codex exec exited with ${result.code}: ${result.stderr.trim().split("\n").slice(-3).join(" | ")}`);
+      }
+      const summary = summarizeCodexEvents(events);
+      if (!summary.text) {
+        throw new Error(`codex exec produced no reply (exit ${result.code}, attempt ${attempt}/${attempts}): ${describeEvents(events) || result.stderr.trim().split("\n").slice(-2).join(" | ")}`);
+      }
+      return { ...summary, events, model, stderr: result.stderr };
+    } catch (err) {
+      lastError = err instanceof Error ? err : new Error(String(err));
+      // A binary that is missing or a login problem will not improve on retry.
+      if (/not found|not logged in|login/i.test(lastError.message)) break;
+    }
   }
-  if (result.code !== 0 && events.length === 0) {
-    throw new Error(`codex exec exited with ${result.code}: ${result.stderr.trim().split("\n").slice(-3).join(" | ")}`);
-  }
-  const summary = summarizeCodexEvents(events);
-  if (!summary.text && result.code !== 0) {
-    throw new Error(`codex exec produced no reply (exit ${result.code}): ${result.stderr.trim().split("\n").slice(-3).join(" | ")}`);
-  }
-  return { ...summary, events, model, stderr: result.stderr };
+  throw lastError ?? new Error("codex exec failed");
 }

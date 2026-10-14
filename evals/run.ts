@@ -68,15 +68,24 @@ async function main(): Promise<void> {
   /** Grade one reply; Anthropic structured output or Codex --output-schema, depending on backend. */
   async function judgeReply(userContent: string): Promise<{ verdict: z.infer<typeof JudgeSchema> | null; usage: UsageLike }> {
     if (backend === "codex") {
-      const turn = await runCodexTurn(`${JUDGE_SYSTEM}\n\n${userContent}\n\nRespond with JSON matching the required schema and nothing else.`, {
-        model: judgeSpec.id === "codex" ? CODEX_DEFAULT_MODEL : judgeSpec.id,
-        effort: "low",
-        tools: false,
-        outputSchema: judgeSchemaJson,
-      });
+      const model = judgeSpec.id === "codex" ? CODEX_DEFAULT_MODEL : judgeSpec.id;
+      // First with --output-schema; if that attempt stalls (seen in the wild), fall back to the schema in the prompt.
+      const prompt = `${JUDGE_SYSTEM}\n\n${userContent}\n\nRespond with JSON matching the required schema and nothing else.`;
+      let turn;
+      try {
+        turn = await runCodexTurn(prompt, { model, effort: "low", tools: false, outputSchema: judgeSchemaJson, retries: 0 });
+      } catch (err) {
+        console.error(`  judge retry without --output-schema (${err instanceof Error ? err.message.split(";")[0] : err})`);
+        turn = await runCodexTurn(`${prompt}\n\nJSON schema:\n${JSON.stringify(judgeSchemaJson)}`, { model, effort: "low", tools: false, retries: 1 });
+      }
       const start = turn.text.indexOf("{");
       const end = turn.text.lastIndexOf("}");
-      const parsed = start >= 0 && end > start ? JudgeSchema.safeParse(JSON.parse(turn.text.slice(start, end + 1))) : null;
+      let parsed: ReturnType<typeof JudgeSchema.safeParse> | null = null;
+      try {
+        parsed = start >= 0 && end > start ? JudgeSchema.safeParse(JSON.parse(turn.text.slice(start, end + 1))) : null;
+      } catch {
+        parsed = null;
+      }
       return {
         verdict: parsed?.success ? parsed.data : null,
         usage: { input_tokens: turn.usage.inputTokens, output_tokens: turn.usage.outputTokens, cache_read_input_tokens: turn.usage.cacheReadTokens },
@@ -96,15 +105,34 @@ async function main(): Promise<void> {
   const results: Array<Record<string, unknown>> = [];
 
   console.log(`Running ${cases.length} cases on ${tutorSpec.label} via ${backend}, judged by ${judgeSpec.label}\n`);
+  let errors = 0;
   for (const c of cases) {
     const tutor = new Tutor(c.student, { client, corpus, model: tutorSpec.id, backend, tools: !v["no-tools"] });
     const started = Date.now();
-    const reply = await tutor.reply(c.message);
+    let reply;
+    try {
+      reply = await tutor.reply(c.message);
+    } catch (err) {
+      errors++;
+      const message = err instanceof Error ? err.message : String(err);
+      console.log(`${c.id.padEnd(30)} ERROR ${message.slice(0, 140)}`);
+      results.push({ id: c.id, student: c.student, message: c.message, error: message, passed: 0, total: c.rubric.length, figureHit: false, modeHit: false, seconds: Number(((Date.now() - started) / 1000).toFixed(1)) });
+      continue;
+    }
     const seconds = ((Date.now() - started) / 1000).toFixed(1);
     for (const k of Object.keys(tutorUsage) as Array<keyof typeof tutorUsage>) tutorUsage[k] += reply.usage[k];
 
     const judgeInput = `Student profile: ${JSON.stringify(c.student)}\nExpected trivium mode: ${c.expectedMode}\nFigures the tutor was expected to draw on (any of): ${c.expectedFigures.join(", ") || "none in particular"}\n\nRubric:\n${c.rubric.map((r, i) => `${i + 1}. ${r}`).join("\n")}\n\n<student_message>\n${c.message}\n</student_message>\n\n<tutor_reply>\n${reply.text}\n</tutor_reply>\n\nTools the tutor called: ${reply.toolCalls.map((t) => `${t.name}(${JSON.stringify(t.input)})`).join("; ") || "none"}`;
-    const judged = await judgeReply(judgeInput);
+    let judged: Awaited<ReturnType<typeof judgeReply>>;
+    try {
+      judged = await judgeReply(judgeInput);
+    } catch (err) {
+      errors++;
+      const message = err instanceof Error ? err.message : String(err);
+      console.log(`${c.id.padEnd(30)} JUDGE ERROR ${message.slice(0, 120)} | tools ${reply.toolCalls.length} | ${seconds}s`);
+      results.push({ id: c.id, student: c.student, message: c.message, reply: reply.text, toolCalls: reply.toolCalls, heuristicMode: reply.mode, error: message, passed: 0, total: c.rubric.length, figureHit: false, modeHit: false, seconds: Number(seconds), servedBy: reply.servedBy });
+      continue;
+    }
     addUsage(judgeUsage, judged.usage);
     const verdict = judged.verdict;
     const passed = verdict ? verdict.criteria.filter((x) => x.pass).length : 0;
@@ -125,7 +153,7 @@ async function main(): Promise<void> {
   const totalCriteria = results.reduce((a, r) => a + (r.total as number), 0);
   const meanScore = results.reduce((a, r) => a + (((r.verdict as { score?: number } | null)?.score) ?? 0), 0) / Math.max(results.length, 1);
   const cost = estimateCost(tutorUsage, tutorSpec) + estimateCost(judgeUsage, judgeSpec);
-  console.log(`\nRubric ${totalPassed}/${totalCriteria} (${((100 * totalPassed) / Math.max(totalCriteria, 1)).toFixed(0)}%) | mean score ${meanScore.toFixed(2)}/5 | mode match ${results.filter((r) => r.modeHit).length}/${results.length} | est. cost $${cost.toFixed(3)}`);
+  console.log(`\nRubric ${totalPassed}/${totalCriteria} (${((100 * totalPassed) / Math.max(totalCriteria, 1)).toFixed(0)}%) | mean score ${meanScore.toFixed(2)}/5 | mode match ${results.filter((r) => r.modeHit).length}/${results.length} | errors ${errors} | est. cost $${cost.toFixed(3)}`);
   const out = join(here, "results", `${new Date().toISOString().replace(/[:.]/g, "-")}.json`);
   writeFileSync(out, JSON.stringify({ backend, tutorModel: tutorSpec.id, judgeModel: judgeSpec.id, tutorUsage, judgeUsage, estimatedCostUsd: cost, results }, null, 2));
   console.log(`wrote ${out}`);
