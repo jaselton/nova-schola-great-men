@@ -1,0 +1,13 @@
+# Netlify deploy of the tutor demo (site/): static page + one function.
+# Deploy from the repo root so the corpus can be bundled with the function:
+#   netlify deploy --site novaschola-tutor --dir site/public --functions site/netlify/functions --no-build
+[build]
+  publish = "site/public"
+  functions = "site/netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[functions.tutor]
+  # The function reads the structured corpus and the lesson markdown at runtime.
+  included_files = ["data/great-men.json", "profiles/**/*.md", "profiles/**/*.json", "research/*.md", "framework/*.md"]

@@ -34,7 +34,8 @@ src/mcp/server.ts           the library tools as an MCP server (stdio) for Codex
 src/pipeline/               generate a new figure; review an existing one
 src/cli.ts                  nova-tutor command line
 evals/                      rubric-graded eval cases and runner
-examples/netlify-tutor.ts   stateless hosting example
+site/                       deployable tutor demo for novaschola.io (page + Netlify function)
+examples/netlify-tutor.ts   minimal stateless hosting example
 tests/                      vitest suite (offline; no API key needed)
 ```
 
@@ -157,7 +158,14 @@ Pass `backend: "codex"` to run the same session through the Codex CLI. Lower-lev
 
 ## Hosting
 
-`examples/netlify-tutor.ts` is a stateless Netlify Function: the client posts `{ message, student }` on the first turn and `{ message, state }` afterwards. Bundle the corpus with the function (`included_files = ["data/great-men.json", "profiles/**", "research/**", "framework/**"]`). The same shape works on any serverless host.
+`site/` is the deployable tutor demo for novaschola.io: a static page (`site/public/index.html`, styled like the main site, with student age, name and parent-mode controls) and one Netlify Function (`site/netlify/functions/tutor.mts`, served at `/api/tutor`). The function is stateless: the page posts `{ message, student }` on the first turn and `{ message, state }` afterwards, and it also accepts the original demo page's `{ messages }` contract and returns `message` for it. The corpus is bundled with the function through `included_files` in the root `netlify.toml`.
+
+```bash
+netlify deploy --site novaschola-tutor --dir site/public --functions site/netlify/functions --no-build          # draft URL
+netlify deploy --site novaschola-tutor --dir site/public --functions site/netlify/functions --no-build --prod   # production
+```
+
+The site needs `ANTHROPIC_API_KEY` (scope: functions). Optional: `NOVA_TUTOR_MODEL` (tier or model id, default `tutor`), `NOVA_TUTOR_ORIGINS` (comma-separated allowed origins for CORS; default any). `examples/netlify-tutor.ts` is the minimal version of the same handler for other projects.
 
 ## Extending the corpus
 
