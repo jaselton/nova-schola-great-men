@@ -7,6 +7,7 @@ import type { Corpus } from "./types.js";
 export * from "./types.js";
 export * from "./catalog.js";
 export * from "./search.js";
+export * from "./spine.js";
 export { listFigureSlugs, parseCorpus, parseProfile, splitSections, stripMarkdown, tokenize } from "./parse.js";
 
 const here = dirname(fileURLToPath(import.meta.url));

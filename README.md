@@ -4,6 +4,8 @@ A structured collection of biographical educational profiles designed to teach v
 
 ## Purpose
 
+The goal is to train a new elite in an aristocratic pattern, in order to restore civilization. Aristocracy here is Aristotle's word: the rule of the best, earned by virtue. Civilization is restored by transmission, and this repository is a vehicle of transmission: twenty-five lives, one virtue spine, and a tutor that teaches through them. The telos is set out in `framework/GREAT_MAN_FRAMEWORK.md`.
+
 This repository implements the **Great Man Framework** — a classical educational approach that uses biography as moral and intellectual instruction. Each profile examines:
 
 - **Early formation** — family, mentors, education
@@ -52,6 +54,7 @@ Offline, no key required:
 ```bash
 npx tsx src/cli.ts show alexander             # structured overview of a figure
 npx tsx src/cli.ts search "fear of being wrong" --limit 3
+npx tsx src/cli.ts search --spine magnificence     # figures taught under one spine virtue
 npx tsx src/cli.ts prompt --band formative    # the assembled system prompt
 npx tsx src/cli.ts models                     # tiers and prices
 npm test                                      # parser, search, prompt and tutor-loop tests

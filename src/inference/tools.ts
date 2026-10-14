@@ -9,6 +9,7 @@ import { z } from "zod";
 import { readCorpusFile, REPO_ROOT } from "../corpus/index.js";
 import { splitSections } from "../corpus/parse.js";
 import { ageRangeFor, findExempla, findProfile } from "../corpus/search.js";
+import { SPINE_ORDER } from "../corpus/spine.js";
 import { AGE_RANGES, type AgeRange, type Corpus, type Profile } from "../corpus/types.js";
 
 /** A library tool: a plain Beta tool definition plus the Zod-backed `parse` and `run` the Tutor calls. */
@@ -56,6 +57,14 @@ export function profileOverview(p: Profile): string {
   if (sig.virtues.length) lines.push("## Virtues to imitate", ...sig.virtues.map((b) => `- ${b.text}`), "");
   if (sig.risks.length) lines.push("## Risks to guard against", ...sig.risks.map((b) => `- ${b.text}`), "");
   if (sig.formedBy.length) lines.push("## How he was formed", ...sig.formedBy.map((b) => `- ${b.text}`), "");
+  const spineLines = SPINE_ORDER.filter((v) => p.spine[v]).map((v) => {
+    const e = p.spine[v]!;
+    const parts = [];
+    if (e.imitate.length) parts.push(`imitate ${e.imitate.join(", ")}`);
+    if (e.guard.length) parts.push(`guard against ${e.guard.join(", ")}`);
+    return `- ${v}: ${parts.join("; ")}`;
+  });
+  if (spineLines.length) lines.push("## Virtue spine", ...spineLines, "");
   if (sig.quote) lines.push(`## Epigraph`, `"${sig.quote}"`, "");
   if (sig.corePractice) lines.push("## Core practice", sig.corePractice, "");
   lines.push(
@@ -150,13 +159,17 @@ export function makeTutorTools(corpus: Corpus, options: ToolOptions = {}): Tutor
   const findExemplaTool = define({
     name: "find_exempla",
     description:
-      "Search the library for figures whose virtues, risks or lessons match a virtue to imitate, a struggle to address, or a free-text situation. Returns ranked figures with the matching lines. Use when you need an example and have not chosen a figure.",
+      "Search the library for figures whose virtues, risks or lessons match a virtue to imitate, a struggle to address, a spine virtue, or a free-text situation. Returns ranked figures with the matching lines. Use when you need an example and have not chosen a figure.",
     inputSchema: z.object({
       query: z.string().optional().describe("Free text: a situation, subject or theme"),
       virtue: z.string().optional().describe("A virtue to imitate, e.g. 'patience', 'courage', 'observation'"),
       struggle: z.string().optional().describe("A struggle or vice to address, e.g. 'pride', 'quitting', 'fear of being wrong'"),
       era: z.enum(["ancient", "medieval", "renaissance", "modern"]).optional(),
       domain: z.string().optional().describe("Restrict to a domain word, e.g. 'science', 'military', 'philosophy'"),
+      spine: z
+        .enum(["temperance", "fortitude", "justice", "prudence", "magnanimity", "magnificence"])
+        .optional()
+        .describe("Restrict to figures taught under one spine virtue (imitate or guard)"),
       limit: z.number().int().min(1).max(10).optional(),
     }),
     run: async (q) => {

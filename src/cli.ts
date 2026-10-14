@@ -21,6 +21,7 @@ import { writeFileSync } from "node:fs";
 import { buildCorpusJson } from "./corpus/build.js";
 import { loadCorpus } from "./corpus/index.js";
 import { findExempla, findProfile } from "./corpus/search.js";
+import { isSpineVirtue, SPINE_ORDER } from "./corpus/spine.js";
 import type { EraGroup } from "./corpus/types.js";
 import { BANDS, isBand, type Band } from "./inference/bands.js";
 import { estimateCost, MODELS, resolveModel, type Effort } from "./inference/models.js";
@@ -35,7 +36,7 @@ const USAGE = `nova-tutor <command> [options]
 Offline
   models                         list model tiers and prices
   build                          rebuild data/great-men.json from the markdown
-  search <text> [--virtue --struggle --era --domain --limit]
+  search <text> [--virtue --struggle --spine --era --domain --limit]
   show <figure> [section]        section: overview|story|why|signature|research
   prompt [--band B] [--parent]   print the assembled system prompt
 
@@ -84,6 +85,7 @@ const { values: v, positionals } = parseArgs({
     struggle: { type: "string" },
     era: { type: "string" },
     domain: { type: "string" },
+    spine: { type: "string" },
     limit: { type: "string" },
     "era-group": { type: "string" },
     day: { type: "string" },
@@ -162,6 +164,7 @@ async function main(): Promise<void> {
         struggle: v.struggle,
         era: v.era as EraGroup | undefined,
         domain: v.domain,
+        spine: v.spine ? (isSpineVirtue(v.spine) ? v.spine : fail(`--spine must be one of ${SPINE_ORDER.join(", ")}`)) : undefined,
         limit: v.limit ? Number(v.limit) : 5,
       });
       if (v.json) return console.log(JSON.stringify(hits, null, 2));

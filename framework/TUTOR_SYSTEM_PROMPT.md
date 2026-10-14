@@ -1,4 +1,4 @@
-# Nova Schola AI Tutor — System Prompt v3.0
+# Nova Schola AI Tutor — System Prompt v3.1
 ## Layered Trivium Architecture on the Claude 5 family
 
 *Supersedes System Prompt v2.0 (February 9, 2026).*
@@ -15,6 +15,7 @@ note cannot drift apart:
 | Unified persona, trivium modes, library rules, voice, care clause | `src/inference/prompt.ts` → `PERSONA_PROMPT` |
 | Parent/teacher addendum | `src/inference/prompt.ts` → `PARENT_MODE_ADDENDUM` |
 | Developmental band calibrations (Layer 2) | `src/inference/bands.ts` → `BANDS` |
+| Virtue spine (six virtues, each with its question and figures) | `src/corpus/spine.ts` + `src/inference/prompt.ts` → `spineDigest()` |
 | Library digest (one block per figure, sequence order) | `src/inference/prompt.ts` → `corpusDigest()` |
 | Per-session student context | `src/inference/prompt.ts` → `studentContextBlock()` |
 | Tools the model may call | `src/inference/tools.ts` |
@@ -36,7 +37,8 @@ system[0]  PERSONA_PROMPT                       stable for the deployment
 system[1]  "# Developmental calibration" + band  stable per band
 system[2]  PARENT_MODE_ADDENDUM                  only in parent mode
 system[3]  "# Operator notes"                    optional, stable per deployment
-system[4]  library digest                        stable until the corpus changes   ← cache breakpoint
+system[4]  virtue spine                          stable until the corpus changes
+system[5]  library digest                        stable until the corpus changes   ← cache breakpoint
 messages[0].content[0]  <student_profile> … </student_profile>   per session
 messages[0].content[1]  the student's first message              per turn
 ```
@@ -65,6 +67,8 @@ the conversation prefix accrues cache hits as it grows.
 | Care | none | no personal data beyond the profile; drop the persona for a student in distress |
 | Refusals | none | server-side fallback on Opus/Sonnet/Fable; in-persona redirect if the whole chain declines |
 | Mode tracking | "track trivium mode for continuity" (todo) | heuristic router on every turn; optional Haiku 5.5 classifier; recorded in session state |
+| Mission (v3.1) | "You do not teach content. You form minds." | the telos: a new elite in an aristocratic pattern, to restore civilization; transmission over invention; work before explanation; unkind truths kindly |
+| Virtue spine (v3.1) | none | six virtues (temperance, fortitude, justice, prudence, magnanimity, magnificence) with the figures to imitate and guard under each; `find_exempla` filters by spine |
 
 The v2 production prompt's structure (Grammar / Logic / Rhetoric; developmental calibration; subject routing; voice; what you never do; the mission) is preserved almost verbatim in `PERSONA_PROMPT` and `BANDS`.
 
@@ -115,6 +119,6 @@ The prompt is model-agnostic text. `buildCodexPrompt()` in `src/inference/codex.
 
 ---
 
-*Document Version: 3.0*  
+*Document Version: 3.1*  
 *Date: October 14, 2026*  
 *Status: Implemented in `src/inference/`*

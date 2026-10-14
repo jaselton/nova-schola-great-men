@@ -242,6 +242,39 @@
         ],
         "wordCount": 2843
       },
+      "spine": {
+        "prudence": {
+          "imitate": [
+            "Curiosity",
+            "Observation",
+            "Integration"
+          ],
+          "guard": [
+            "Scattered focus",
+            "Perfectionism"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Persistence"
+          ],
+          "guard": [
+            "Defensiveness"
+          ]
+        },
+        "justice": {
+          "imitate": [],
+          "guard": [
+            "Isolation"
+          ]
+        },
+        "temperance": {
+          "imitate": [],
+          "guard": [
+            "Isolation"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Leonardo was born illegitimate—the son of a notary and a peasant woman. That accident of birth locked him out of the schools where elite boys learned Latin and classics. Instead, at age 12, he entered an artist's workshop in Florence.\n\nFor the next 50 years, Leonardo pursued the most ambitious self-education program in history. He dissected 30+ cadavers to understand anatomy. He filled 7,000+ notebook pages with observations of water, birds, plants, light, and human faces. He painted masterpieces. He designed flying machines, studied geology, and pioneered empirical investigation.\n\nHis exclusion from formal education became his advantage. Where scholars quoted books, Leonardo looked at reality. Where specialists divided knowledge into separate fields, Leonardo integrated art and science into one unified pursuit.\n\nHe proved that observation beats authority, that questions matter more than credentials, and that the person who looks closely at the world will see what others miss.\n\n---",
         "Why He Matters for Your Child": "**Leonardo teaches:**\n- Curiosity as a discipline (not just wondering, but systematically investigating)\n- The power of direct observation (looking closely, repeatedly, carefully)\n- Integration over specialization (refusing to separate hand from mind, art from science)\n- That disadvantage can become distinctive advantage (if you refuse to accept limitation)\n\n**But also warns against:**\n- Scattered focus (starting too many things, finishing too few)\n- Perfectionism that prevents completion\n- Working in isolation without accountability\n\n---",
@@ -297,6 +330,7 @@
         "finishing",
         "focus",
         "formal",
+        "fortitude",
         "genius",
         "geometry",
         "hand",
@@ -306,6 +340,7 @@
         "invention",
         "investigating",
         "isolation",
+        "justice",
         "learning",
         "leonardo",
         "lessons",
@@ -330,6 +365,7 @@
         "projects",
         "proportion",
         "prototyping",
+        "prudence",
         "refuse",
         "refusing",
         "renaissance",
@@ -349,6 +385,7 @@
         "subject",
         "systematically",
         "technique",
+        "temperance",
         "thinking",
         "through",
         "too",
@@ -641,6 +678,46 @@
         ],
         "wordCount": 7008
       },
+      "spine": {
+        "fortitude": {
+          "imitate": [
+            "Courage in the front rank"
+          ],
+          "guard": []
+        },
+        "prudence": {
+          "imitate": [
+            "Observation",
+            "Reframing"
+          ],
+          "guard": [
+            "No succession"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [
+            "Magnanimity",
+            "Pothos"
+          ],
+          "guard": [
+            "Hybris"
+          ]
+        },
+        "temperance": {
+          "imitate": [],
+          "guard": [
+            "Wrath",
+            "Drunkenness",
+            "No stopping point"
+          ]
+        },
+        "magnificence": {
+          "imitate": [],
+          "guard": [
+            "No succession"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Alexander was born into a Macedonian court that was half-barbarian by Athenian standards and utterly dangerous from within. His father, Philip, had built the most effective army in the Greek world. His mother, Olympias, told him from infancy that he was descended from Achilles and Heracles — and ultimately from Zeus.\n\nThen Philip hired Aristotle.\n\nFor three years, the greatest living philosopher tutored the future king in a rural sanctuary at Mieza, alongside the hand-picked noble youths who would become Alexander's generals. By eighteen, Alexander had led a cavalry charge that ended Greek political freedom. By twenty, he was king. By twenty-five, he had destroyed the Persian Empire. By thirty, he had reached the Indus. At thirty-two, he was dead.\n\nHe never lost a battle. He founded more than twenty cities. He spread Greek language and civic institutions from Egypt to Central Asia, creating a cultural zone — the Hellenistic world — that lasted a thousand years and carried Christianity to Rome.\n\nBut the same drive that built Alexandria killed his friend Cleitus in a drunken rage, marched his army through a desert where most of them died, and refused to plan for a world in which he was not the center. The most deliberately formed human in antiquity was also the cautionary tale for every formation that follows.\n\n---",
         "Why He Matters for Your Child": "**Alexander teaches:**\n- That greatness can be formed — mentorship and expectation produce extraordinary results\n- Leadership from the front (command presence, personal courage, shared hardship)\n- Reframing \"impossible\" problems (Bucephalus, the Gordian Knot, Tyre, the Sogdian Rock)\n- Magnanimity as strategy (Darius's family, Porus, the cities that surrendered)\n- *Pothos* — the longing for what is beyond — as the engine of discovery\n\n**But also warns against:**\n- Wrath — the same *thymos* that wins battles kills friends\n- Inability to stop — drive without limit becomes self-destruction\n- Divinity fantasies — taking your own mythology as literal truth\n- Failure to plan beyond oneself — no succession, no institution\n\n---",
@@ -706,6 +783,7 @@
         "fantasies",
         "formation",
         "formed",
+        "fortitude",
         "frame",
         "friends",
         "front",
@@ -737,6 +815,7 @@
         "literal",
         "longing",
         "magnanimity",
+        "magnificence",
         "mediterranean",
         "mentorship",
         "military",
@@ -763,6 +842,7 @@
         "problem",
         "problems",
         "produce",
+        "prudence",
         "rank",
         "reframe",
         "reframing",
@@ -792,6 +872,7 @@
         "surrendered",
         "take",
         "taking",
+        "temperance",
         "tension",
         "thymos",
         "told",
@@ -1102,6 +1183,50 @@
         ],
         "wordCount": 7494
       },
+      "spine": {
+        "justice": {
+          "imitate": [
+            "Devotion to a teacher"
+          ],
+          "guard": [
+            "Distrust of ordinary people"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Patience in building"
+          ],
+          "guard": []
+        },
+        "magnificence": {
+          "imitate": [
+            "Patience in building",
+            "Institutional imagination"
+          ],
+          "guard": []
+        },
+        "prudence": {
+          "imitate": [
+            "Institutional imagination",
+            "Systematic thinking",
+            "Mathematical discipline"
+          ],
+          "guard": [
+            "Political trauma distortion",
+            "Utopian impatience",
+            "Confusing your vision for the program",
+            "Form rigidity"
+          ]
+        },
+        "temperance": {
+          "imitate": [
+            "Mathematical discipline"
+          ],
+          "guard": [
+            "Utopian impatience"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Plato was born into an old Athenian aristocratic family with every expectation that he would enter politics. He did not. As a young man he met Socrates — a shabby, barefoot questioner of the powerful — and spent the next decade following him through the agora of Athens, listening.\n\nWhen Plato was twenty-eight, Athens put Socrates on trial and sentenced him to death. The most important adult in Plato's life was killed, legally, by the city of his birth.\n\nWhat Plato did next is the decisive act of his life. He did not retreat into private mourning. He did not take violent revenge. He did not give a single angry speech and move on. He left Athens, traveled for twelve years, studied with the Pythagoreans of southern Italy, and came back with a plan.\n\nHe bought a piece of land in a sacred grove outside Athens and founded a school — the Academy.\n\nThe Academy would last more than nine hundred years. It would train Aristotle, who would train Alexander. It would invent the format we now call \"higher learning.\" It would preserve the Socratic method long after the generation that killed Socrates was dust.\n\nPlato's life is the lesson that when the world destroys your teacher, you do not answer with tears or violence. You answer with an *institution* — a place, built in stone, that outlasts the persecutors. He also wrote thirty-six dialogues, one of which (*The Republic*) has shaped every political conversation in the West for twenty-four centuries.\n\nBut the Academy is the main thing. Everything else — the dialogues, the Forms, the cave, even the *Republic* — was curriculum for a school Plato built so that Socrates would not be forgotten.\n\n---",
         "Why He Matters for Your Child": "**Plato teaches:**\n- That institutions are how teachers survive their own deaths\n- That the *form* of writing matters — the dialogue invites, the lecture tells\n- That the response to injustice can be structural, not sentimental\n- That mathematics is the ground of serious thinking\n- That the truly just life requires examining your own opinions, not inheriting them\n\n**But also warns against:**\n- Over-correcting against democracy after a traumatic experience\n- The utopian temptation in political design (*Republic* read badly)\n- Staking too much on forming a single great ruler (the Syracuse failures)\n- Elitism dressed as meritocracy\n\n---",
@@ -1171,6 +1296,7 @@
         "form",
         "formation",
         "forming",
+        "fortitude",
         "founder",
         "fragile",
         "genre",
@@ -1189,6 +1315,7 @@
         "intellectual",
         "introductory",
         "invites",
+        "justice",
         "laws",
         "lecture",
         "letter",
@@ -1196,6 +1323,7 @@
         "life",
         "literary",
         "lost",
+        "magnificence",
         "mathematical",
         "mathematics",
         "matters",
@@ -1224,6 +1352,7 @@
         "preserve",
         "private",
         "program",
+        "prudence",
         "public",
         "read",
         "reading",
@@ -1255,6 +1384,7 @@
         "teachers",
         "teaching",
         "tells",
+        "temperance",
         "temptation",
         "theory",
         "thinking",
@@ -1583,6 +1713,53 @@
         ],
         "wordCount": 8241
       },
+      "spine": {
+        "temperance": {
+          "imitate": [
+            "Systematic discipline"
+          ],
+          "guard": []
+        },
+        "prudence": {
+          "imitate": [
+            "Systematic discipline",
+            "Empirical honesty",
+            "Encyclopedic ambition"
+          ],
+          "guard": [
+            "Cultural blindness",
+            "Over-systematization",
+            "The limits of moderation",
+            "The lecture habit"
+          ]
+        },
+        "justice": {
+          "imitate": [
+            "Empirical honesty"
+          ],
+          "guard": [
+            "Cultural blindness",
+            "Patron dependency"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Intellectual courage",
+            "Patience in formation"
+          ],
+          "guard": [
+            "Patron dependency",
+            "The limits of moderation"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [
+            "Intellectual courage",
+            "Encyclopedic ambition"
+          ],
+          "guard": []
+        }
+      },
       "sections": {
         "The One-Minute Story": "Aristotle was the son of a doctor — the personal physician to the king of Macedon. Both his parents died when he was young. At seventeen, he traveled to Athens and entered Plato's Academy, the most prestigious school in the Greek world. He stayed for twenty years.\n\nWhen Plato died, the Academy's leadership passed to someone else. Aristotle left. He spent the next several years on the island of Lesbos, doing something no philosopher had ever done: cutting open animals, counting their parts, watching their behavior, and writing down everything he saw. He invented biology.\n\nThen Philip of Macedon called him north to tutor his thirteen-year-old son, Alexander. For three years, Aristotle taught the future conqueror Homer, ethics, logic, and natural science. Alexander would carry an Aristotle-annotated copy of the *Iliad* through every campaign.\n\nAristotle returned to Athens at forty-nine and founded his own school — the Lyceum. Over the next twelve years, he produced the most comprehensive body of philosophical and scientific work in the ancient world. He invented formal logic. He wrote the *Nicomachean Ethics*, arguably the most important work of moral philosophy ever composed. He analyzed 158 Greek constitutions. He wrote the founding texts of political science, literary criticism, rhetoric, psychology, physics, and metaphysics.\n\nWhen Alexander died in 323 BCE, Athens turned against Macedon's friends. Aristotle was charged with impiety — the same charge that killed Socrates. He chose differently: he fled, saying he would not let Athens \"sin twice against philosophy.\"\n\nHe died within a year, at sixty-two. He left behind a school, a will that freed his slaves, and a body of work that would shape every subsequent tradition of Western thought — through Islamic philosophy, medieval Christianity, the Renaissance, and modern science.\n\nAristotle's life is the lesson that the best student does not copy the teacher. He *completes* the teacher — seeing what the teacher missed, adding what the teacher lacked, and building a system others can use long after both teacher and student are gone.\n\n---",
         "Why He Matters for Your Child": "**Aristotle teaches:**\n- That a great education produces not a copy of the teacher, but a new kind of thinker\n- That looking at the real world — observing, classifying, getting your hands dirty — is the ground of serious knowledge\n- That virtue is a *habit* built through practice, not a decision made once\n- That the \"golden mean\" is not compromise but *precision* — the right response to the specific situation\n- That organizing what you know into a system makes every part of it more powerful\n\n**But also warns against:**\n- The limitations of one's own era — Aristotle defended slavery using his own best methods, and was wrong\n- The danger of systematizing too soon — rigid systems become prisons when the evidence changes\n- The incomplete success of mentoring the powerful — Alexander was brilliant and sometimes monstrous\n- The risk of over-reliance on a patron — when Alexander died, Aristotle's world collapsed\n\n---",
@@ -1653,6 +1830,7 @@
         "evidence",
         "figures",
         "formation",
+        "fortitude",
         "getting",
         "golden",
         "great",
@@ -1670,6 +1848,7 @@
         "insufficient",
         "intellectual",
         "interested",
+        "justice",
         "kind",
         "know",
         "knowledge",
@@ -1684,6 +1863,7 @@
         "looking",
         "lyceum",
         "made",
+        "magnanimity",
         "makes",
         "mean",
         "mentoring",
@@ -1720,6 +1900,7 @@
         "precision",
         "prisons",
         "produces",
+        "prudence",
         "question",
         "range",
         "real",
@@ -1752,6 +1933,7 @@
         "systematizing",
         "systems",
         "teacher",
+        "temperance",
         "tempted",
         "theory",
         "thinker",
@@ -2000,6 +2182,54 @@
         "whenToReference": [],
         "wordCount": 5114
       },
+      "spine": {
+        "temperance": {
+          "imitate": [
+            "Daily self-examination",
+            "Duty over preference",
+            "Restraint of power",
+            "Gratitude as a practice",
+            "Equanimity under attack",
+            "The morning meditation"
+          ],
+          "guard": [
+            "Excessive gloominess"
+          ]
+        },
+        "justice": {
+          "imitate": [
+            "Duty over preference",
+            "Restraint of power"
+          ],
+          "guard": [
+            "Cultural blindness",
+            "Absentee fatherhood",
+            "Indulgence of the unworthy",
+            "Dynastic sentimentality"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Equanimity under attack"
+          ],
+          "guard": [
+            "Excessive gloominess",
+            "Indulgence of the unworthy"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [
+            "Imitation of a living model"
+          ],
+          "guard": []
+        },
+        "prudence": {
+          "imitate": [],
+          "guard": [
+            "Cultural blindness"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Marcus Aurelius did not want to be emperor. He wanted to be a philosopher.\n\nHe was born into one of the great Roman aristocratic families in 121 CE. His father died when he was a small child; he was raised by his grandfather, a three-time consul. The emperor Hadrian noticed him as a serious little boy and nicknamed him \"Verissimus\" — \"most truthful.\"\n\nAt twelve, Marcus put on the rough cloak of a philosopher and began sleeping on the floor. His mother made him move to a cot. At seventeen, Hadrian arranged an elaborate succession plan: the emperor Antoninus Pius would adopt Marcus, and Marcus would eventually become emperor himself.\n\nMarcus had no choice. He did not want the throne. But for twenty-three years he served as Antoninus's apprentice, watching up close what good rule looks like, being trained in every aspect of imperial administration, and going deeper into Stoic philosophy under the teacher Junius Rusticus, who gave him the book that changed his life: the *Discourses of Epictetus*.\n\nWhen Antoninus died in 161 CE, Marcus took the throne — and immediately insisted his adopted brother share it with him, because that had been the plan. Then the disasters began. A Tiber flood. A war with Parthia. A plague that killed perhaps ten million people. Then Germanic tribes crossed the Danube and invaded Italy itself — the deepest invasion since Hannibal.\n\nMarcus, a philosopher in his late forties, went to war. He spent the last decade of his life in military camps on the frozen Danube frontier. In his tent at night, he wrote a book to himself — not for publication, not for students, just for his own private use. He wrote to remind himself, day after day, how to be a better man tomorrow.\n\nThat book is *The Meditations*. It survived by accident. It is now one of the most beloved and practical works of philosophy ever written.\n\nWhen Marcus died in 180 CE, he left the empire to his nineteen-year-old biological son, Commodus — and Commodus turned out to be one of the worst emperors in Roman history. Twelve years after Marcus's death, his son was strangled in his bath and the empire collapsed into civil war.\n\nMarcus Aurelius's life is the lesson that a philosopher can hold absolute power without being corrupted by it — and also the lesson that even the best father cannot guarantee a great son. Formation equips. It does not determine.\n\n---",
         "Why He Matters for Your Child": "**Marcus Aurelius teaches:**\n- That the highest use of philosophy is not argument but *practice* — writing to yourself at night about how to be better tomorrow\n- That duty can be a higher form of freedom than doing what you want\n- That power does not have to corrupt — a well-formed person can hold enormous power and use it with restraint\n- That gratitude is a discipline, not a feeling — you *list* what you are thankful for, and you do it every day\n- That the only things truly in your control are your own judgments, and almost all suffering comes from forgetting this\n- That seriousness is not grimness — it is the willingness to do real work\n\n**But also warns against:**\n- The danger of cultural blindness — even the philosopher of universal kinship persecuted the Christians\n- The failure mode of Stoicism — the slide from equanimity into coldness\n- The limits of formation — Marcus's own son, Commodus, was a catastrophe\n- The risk of absence — a father on campaign for ten years cannot form his son the way he himself was formed\n- The temptation to leave power to the wrong person out of love\n\n---",
@@ -2052,6 +2282,7 @@
         "form",
         "formation",
         "formed",
+        "fortitude",
         "freedom",
         "friends",
         "gloominess",
@@ -2070,6 +2301,7 @@
         "indulgence",
         "intellectual",
         "judgments",
+        "justice",
         "king",
         "kinship",
         "leave",
@@ -2077,6 +2309,7 @@
         "list",
         "living",
         "love",
+        "magnanimity",
         "marcus",
         "meditation",
         "military",
@@ -2095,6 +2328,7 @@
         "power",
         "practice",
         "preference",
+        "prudence",
         "real",
         "restraint",
         "risk",
@@ -2110,6 +2344,7 @@
         "stoicism",
         "suffering",
         "temperament",
+        "temperance",
         "temptation",
         "ten",
         "thankful",
@@ -2239,6 +2474,35 @@
         "whenToReference": [],
         "wordCount": 4944
       },
+      "spine": {
+        "justice": {
+          "imitate": [
+            "Intellectual honesty",
+            "commitment to truth over comfort",
+            "consistency between word and deed",
+            "piety in the original sense"
+          ],
+          "guard": [
+            "Social tactlessness",
+            "apparent neglect of family",
+            "the real ambiguity of his influence on Alcibiades and Critias"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "courage",
+            "commitment to truth over comfort"
+          ],
+          "guard": []
+        },
+        "prudence": {
+          "imitate": [],
+          "guard": [
+            "possible political naïveté about his enemies",
+            "the real ambiguity of his influence on Alcibiades and Critias"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Socrates was the son of a stonemason. He received a basic education, learned his father's trade, served as a soldier in three campaigns of the Peloponnesian War, and was known for standing motionless on a battlefield for twenty-four hours thinking through a philosophical problem. He was notoriously ugly — bald, wide-nosed, bug-eyed, potbellied. He went barefoot in all seasons and wore the same rough cloak every day.\n\nHe never wrote anything down.\n\nAt some point in midlife, his friend Chaerephon visited the Oracle at Delphi and asked whether anyone was wiser than Socrates. The Oracle said no. Socrates spent the rest of his life trying to prove the Oracle wrong. He went to the politicians and found they didn't know what they thought they knew. He went to the poets and found the same. He went to the craftsmen — who at least knew *their* craft — but found they mistook skill with tools for wisdom about life.\n\nHis conclusion: the Oracle was right, but for a strange reason. He was the wisest man in Athens only because *he knew what he didn't know*. Everyone else was certain. He was honestly uncertain. That turned out to be wiser.\n\nSo he made it his mission — a divine mission, he said — to help Athens see the limits of its own confidence. He talked to everyone. He asked questions. He exposed false certainty wherever he found it: in generals, poets, politicians, craftsmen, and ambitious young men. He charged no fees. He took no money. He built no school.\n\nHe did produce Plato — who built a school that ran for nearly a thousand years and whose writings contain more philosophy than any other human being has ever produced.\n\nHe also knew, and apparently failed to form, Alcibiades — the most brilliant and disastrous Athenian general of the age — and Critias, who became the most violent of the Thirty Tyrants.\n\nIn 399 BCE, three men charged him with impiety and corrupting the youth of Athens. Five hundred citizens voted 280–220 to convict him. When asked to name his punishment, Socrates suggested the city give him free meals for life, as a service to Athens — then, under pressure, proposed a fine. The jury sentenced him to death.\n\nHe was offered escape. He refused. He drank hemlock at age seventy-one with the composure he had shown on the battlefield at forty-eight. His last words were a reminder to pay a small debt to a friend.\n\nHe is the founding figure of Western philosophy and the first person in Western history to die specifically for the act of thinking.\n\n---",
         "Why He Matters for Your Child": "**Socrates teaches:**\n\n- That asking good questions is more important than having correct answers — and that the habit of questioning your own assumptions is the beginning of real education\n- That the most dangerous kind of ignorance is *confident* ignorance — believing you know something you do not actually understand\n- That character revealed in calm, small moments (standing motionless at Potidaea, walking without hurry at Delium, refusing hemlock without drama) is the same character revealed in great ones\n- That you cannot give another person genuine knowledge — you can only help them discover what they already, in some sense, know; this is as true of parents teaching children as of Socrates in the agora\n- That there is an enormous difference between knowing what is right and actually doing it — Alcibiades knew what was right; he could not bring himself to do it; the lesson is sobering and permanent\n\n**The formation challenge Socrates poses:**\nAre you teaching your child to receive answers — or to ask better questions? Both matter. But if the questions are absent, the answers are only borrowed. Socrates insists they must be owned.\n\n---",
@@ -2289,6 +2553,7 @@
         "enormous",
         "ethics",
         "family",
+        "fortitude",
         "genuine",
         "give",
         "good",
@@ -2306,6 +2571,7 @@
         "important",
         "influence",
         "intellectual",
+        "justice",
         "killed",
         "kind",
         "knew",
@@ -2331,6 +2597,7 @@
         "political",
         "possible",
         "potidaea",
+        "prudence",
         "questioning",
         "questions",
         "real",
@@ -2459,6 +2726,47 @@
         "whenToReference": [],
         "wordCount": 4631
       },
+      "spine": {
+        "temperance": {
+          "imitate": [
+            "Discipline"
+          ],
+          "guard": [
+            "Excessive caution about direct political engagement"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "intellectual seriousness",
+            "practical wisdom"
+          ],
+          "guard": []
+        },
+        "fortitude": {
+          "imitate": [
+            "long patience",
+            "the courage of quiet conviction"
+          ],
+          "guard": [
+            "Excessive caution about direct political engagement",
+            "perhaps a too-comfortable accommodation with Macedonian power at the end"
+          ]
+        },
+        "justice": {
+          "imitate": [
+            "civic commitment"
+          ],
+          "guard": [
+            "perhaps a too-comfortable accommodation with Macedonian power at the end"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "possible vanity about his written style"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Isocrates was born into a prosperous Athenian family in 436 BCE, the son of a flute maker. He received a first-rate education — studying under Gorgias, the greatest rhetorical theorist of the age, and possibly under Socrates himself. He was, by all accounts, highly gifted: quick mind, excellent ear for prose, genuine philosophical curiosity.\n\nHe had one problem. He could not speak in public. His voice was too weak to carry in the assembly or the courts. In Athens — where power ran entirely through public performance — this was a potentially disabling limitation.\n\nHe redirected. He became a writer.\n\nThe Peloponnesian War destroyed his family's wealth. In his mid-thirties, broke and educated, he spent a decade writing legal speeches for hire — the ancient equivalent of a trial lawyer's ghostwriter. He was good at it. He also found it beneath him. Around 390 BCE, he opened his own school near the Lyceum, charged a thousand drachmas per student, and ran it for sixty years.\n\nHis students became the historians, generals, orators, and statesmen who actually ran the fourth-century Greek world. Theopompus and Ephorus wrote its history. Hyperides argued its cases. Timotheus commanded its fleets. Lycurgus rebuilt its finances after its final military defeat.\n\nWhile he ran his school, he also wrote — long, elaborately crafted prose pamphlets addressed to the Greek public. The *Panegyricus*, which took ten years to compose, called for Greek unity against Persia. The *Antidosis*, written at eighty-two, was a comprehensive defense of his life's work and educational philosophy. The *Philippus* urged Philip of Macedon to unite the Greeks and lead the Persian campaign Isocrates had been advocating for fifty years.\n\nPhilip won the battle of Chaeronea in 338 BCE. Athens ceased to be an independent power. Isocrates, ninety-eight years old, heard the news and stopped eating. He died four days later.\n\nHe had been born eleven years before the Parthenon was completed. He died the year Athens lost its freedom. In between, he had spent sixty years arguing — against Plato, against the Sophists, against everyone who thought education was either abstract contemplation or mere rhetorical skill — that the highest education forms men of good character who can speak effectively in service of the common good.\n\nHe was, in the fullest sense, a man who practiced what he taught. His prose was so carefully crafted that rhetoricians for the next seven centuries used it as a model. His students were so effectively formed that they governed a civilization. And he died from grief at the failure of the political vision his entire life had been pointed toward.\n\n---",
         "Why He Matters for Your Child": "**Isocrates teaches:**\n\n- That the ability to think clearly and communicate effectively are not two separate skills but one — that organizing your thoughts into language that another person can understand is itself a form of thinking, and doing it well requires both discipline and genuine understanding\n- That education is formation, not information — the goal is not a mind full of correct answers but a person of genuine character who can act wisely in the world\n- That overcoming a real limitation by redirecting energy rather than surrendering to it is itself a character lesson — the man who couldn't speak became the greatest teacher of speakers in antiquity\n- That civic life — the actual governance of actual communities — is a worthy and demanding calling that requires the best-formed people, not the retreating philosopher's second-best choices\n- That a long, consistent commitment to a serious intellectual project across an entire lifetime is possible and what it looks like from the inside\n\n**The formation challenge Isocrates poses:**\nCan your child think clearly *and* communicate effectively *and* do both in service of something genuinely good? If any one of these is missing, the formation is incomplete. The thinker who cannot communicate is ineffective. The communicator without genuine understanding is dangerous. The person with both but without good character amplifies evil. All three must go together.\n\n---",
@@ -2513,6 +2821,7 @@
         "excessive",
         "form",
         "formation",
+        "fortitude",
         "full",
         "genuine",
         "goal",
@@ -2523,6 +2832,7 @@
         "intellectual",
         "isocrates",
         "itself",
+        "justice",
         "language",
         "late",
         "lesson",
@@ -2533,6 +2843,7 @@
         "long",
         "looks",
         "macedonian",
+        "magnanimity",
         "man",
         "mind",
         "organizing",
@@ -2550,6 +2861,7 @@
         "power",
         "practical",
         "project",
+        "prudence",
         "quiet",
         "rather",
         "real",
@@ -2567,6 +2879,7 @@
         "style",
         "surrendering",
         "teacher",
+        "temperance",
         "theory",
         "think",
         "thinking",
@@ -2706,6 +3019,38 @@
         ],
         "wordCount": 2558
       },
+      "spine": {
+        "prudence": {
+          "imitate": [
+            "Eloquence",
+            "intellectual range"
+          ],
+          "guard": [
+            "political overestimation of his own leverage"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "industry",
+            "civic courage"
+          ],
+          "guard": [
+            "indecision"
+          ]
+        },
+        "justice": {
+          "imitate": [
+            "civic courage"
+          ],
+          "guard": []
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "Vanity"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Cicero was not born into Rome's ruling nobility. He came from Arpinum, a provincial town, and had to build his entire public life without the inherited prestige that most Roman politicians relied on. He did it through education, discipline, and the mastery of speech.\n\nHe studied law, rhetoric, and philosophy until he became the greatest orator in Rome. He exposed corrupt governors, rose through every public office at the earliest legal age, and became consul in 63 BCE — a nearly unbelievable achievement for a *novus homo*, a \"new man\" from outside the old governing families.\n\nThat same year he uncovered Catiline's conspiracy to overthrow the Roman state. His speeches against Catiline made him famous forever. Rome hailed him as the man who saved the republic.\n\nBut the republic he saved was already dying.\n\nOver the next twenty years, Cicero watched constitutional government buckle under ambition, military force, and civil war. He tried to hold it together with law, persuasion, alliances, and finally philosophy. When politics failed, he wrote books — *On the Orator*, *On the Republic*, *On the Laws*, *On Duties* — that preserved Rome's best understanding of civic life for future generations.\n\nAfter Caesar's assassination, Cicero made one final attempt to stop tyranny by speaking against Mark Antony. He lost. In 43 BCE he was murdered, and his head and hands were nailed to the speaker's platform in Rome.\n\nHe could not save the republic. But he became its greatest voice, and one of the chief teachers of the Western tradition on duty, eloquence, and public life.\n\n---",
         "Why He Matters for Your Child": "**Cicero teaches:**\n\n- That words are tools of civilization, not ornaments for self-display\n- That speaking well requires more than technique — it requires moral seriousness, judgment, and knowledge\n- That public courage often costs something real\n- That even when institutions are failing, it still matters to preserve what is true, honorable, and worth handing on\n- That education should prepare a person not just to succeed privately but to serve the common good\n\n**The formation challenge Cicero poses:**\nCan your child learn to use language as an instrument of truth, clarity, and service rather than manipulation, vanity, or performance? Cicero's life insists that eloquence without character is dangerous, but character without the ability to articulate and defend it is politically weak. The formed person needs both.\n\n---",
@@ -2749,6 +3094,7 @@
         "even",
         "facing",
         "failing",
+        "fortitude",
         "gifts",
         "good",
         "government",
@@ -2763,6 +3109,7 @@
         "intellectual",
         "intelligence",
         "judgment",
+        "justice",
         "knowledge",
         "language",
         "last",
@@ -2772,6 +3119,7 @@
         "life",
         "like",
         "looks",
+        "magnanimity",
         "manipulatively",
         "matters",
         "moral",
@@ -2793,6 +3141,7 @@
         "preserved",
         "pressure",
         "privately",
+        "prudence",
         "public",
         "range",
         "rather",
@@ -3044,6 +3393,41 @@
         ],
         "wordCount": 2059
       },
+      "spine": {
+        "justice": {
+          "imitate": [
+            "Humane discipline",
+            "Respect for development"
+          ],
+          "guard": []
+        },
+        "temperance": {
+          "imitate": [
+            "Humane discipline"
+          ],
+          "guard": [
+            "Severity"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Moral seriousness",
+            "Judgment"
+          ],
+          "guard": [
+            "Showiness",
+            "Premature performance",
+            "Mechanization",
+            "Bad models"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Pedagogical patience"
+          ],
+          "guard": []
+        }
+      },
       "sections": {
         "The One-Minute Story": "Quintilian was born far from Rome, in Roman Spain, but rose to become the empire's greatest teacher of rhetoric. He lived after the Roman Republic had already fallen, which meant he inherited Cicero's ideal of the noble public speaker in a world where free public life was narrower and more dangerous.\n\nInstead of giving up that ideal, Quintilian did something civilizationally decisive: he turned it into an educational system.\n\nIn his great work, *Institutio Oratoria*, he asked not just how to make a persuasive speaker, but how to form a human being from childhood into what Rome once called a **good man skilled in speaking**. He wrote about nurses, early habits, memory, imitation, reading, discipline, style, and character. He criticized empty cleverness, opposed unnecessary harshness, and insisted that eloquence without goodness was malformed from the start.\n\nCicero showed what the mature orator could look like. Quintilian explained how to raise one.\n\nThat is why he matters. He is not just the teacher of rhetoric. He is one of the foundational thinkers of humane education.\n\n---",
         "Why He Matters for Your Child": "**Quintilian teaches:**\n- That formation starts earlier than formal schooling thinks it does\n- That speech must be connected to character\n- That imitation is powerful, so models matter\n- That teachers should be demanding, humane, and perceptive\n- That education should prepare a person for useful, honorable public life\n\n**But also warns against:**\n- Cleverness without substance\n- Performance without moral seriousness\n- Harsh discipline that produces fear instead of formation\n- Schooling that trains technique while neglecting the soul\n\n---",
@@ -3096,6 +3480,7 @@
         "formal",
         "formation",
         "formed",
+        "fortitude",
         "fully",
         "gifts",
         "goal",
@@ -3110,6 +3495,7 @@
         "instead",
         "instruct",
         "judgment",
+        "justice",
         "kind",
         "lax",
         "learning",
@@ -3138,6 +3524,7 @@
         "premature",
         "prepare",
         "produces",
+        "prudence",
         "public",
         "quintilian",
         "rather",
@@ -3160,6 +3547,7 @@
         "teacher",
         "teachers",
         "technique",
+        "temperance",
         "tempted",
         "think",
         "thinks",
@@ -3416,6 +3804,47 @@
         ],
         "wordCount": 2823
       },
+      "spine": {
+        "justice": {
+          "imitate": [
+            "Intellectual honesty",
+            "Repentance"
+          ],
+          "guard": [
+            "Factional harshness"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Perseverance in seeking"
+          ],
+          "guard": []
+        },
+        "temperance": {
+          "imitate": [
+            "Humility before truth"
+          ],
+          "guard": [
+            "Sensuality",
+            "Factional harshness"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Pastoral seriousness"
+          ],
+          "guard": [
+            "Self-deception"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "Ambition",
+            "Pride"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Augustine began life as a brilliant, ambitious boy from Roman North Africa. He mastered rhetoric, chased status, pursued pleasure, and searched for truth in one system after another. He wanted wisdom, but he also wanted applause—and for years the second desire kept corrupting the first.\n\nThen, after a long interior struggle in Milan, Augustine finally stopped arguing around the truth and surrendered to it. He was baptized, returned to Africa, became a priest and bishop, and spent the rest of his life writing some of the most influential works in Western history: *Confessions*, *On Christian Teaching*, and *The City of God*.\n\nAugustine matters because he understood something many smart people never learn: the deepest human problem is not lack of intelligence but disordered love. A person can know a great deal and still be inwardly broken. The soul needs not only instruction, but conversion.\n\n---",
         "Why He Matters for Your Child": "**Augustine teaches:**\n- That success does not automatically bring peace\n- That the heart is always being shaped by what it loves most\n- That honest self-examination is a form of courage\n- That repentance is not weakness but strength\n- That education must form desire, not just sharpen intellect\n\n**But also warns against:**\n- Ambition without moral order\n- Cleverness used to protect bad habits\n- Following the crowd into small sins that reveal larger disorder\n- Treating faith or philosophy as identity accessories instead of truth\n- Harsh certainty that forgets humility\n\n---",
@@ -3465,6 +3894,7 @@
         "following",
         "forgets",
         "form",
+        "fortitude",
         "friendship",
         "good",
         "grace",
@@ -3482,12 +3912,14 @@
         "intellect",
         "intellectual",
         "interior",
+        "justice",
         "larger",
         "late",
         "leadership",
         "learned",
         "love",
         "loves",
+        "magnanimity",
         "memory",
         "moral",
         "must",
@@ -3505,6 +3937,7 @@
         "pride",
         "problem",
         "protect",
+        "prudence",
         "psychology",
         "repentance",
         "requires",
@@ -3531,6 +3964,7 @@
         "subject",
         "success",
         "summons",
+        "temperance",
         "temptation",
         "theology",
         "time",
@@ -3747,6 +4181,53 @@
         "whenToReference": [],
         "wordCount": 2112
       },
+      "spine": {
+        "magnificence": {
+          "imitate": [
+            "Intellectual stewardship"
+          ],
+          "guard": []
+        },
+        "justice": {
+          "imitate": [
+            "Intellectual stewardship",
+            "Service"
+          ],
+          "guard": []
+        },
+        "fortitude": {
+          "imitate": [
+            "Composure under injustice",
+            "Interior freedom"
+          ],
+          "guard": []
+        },
+        "temperance": {
+          "imitate": [
+            "Composure under injustice"
+          ],
+          "guard": [
+            "Attachment to status",
+            "Bitterness"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Synthesis"
+          ],
+          "guard": [
+            "Political naïveté",
+            "Abstraction"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "Attachment to status",
+            "Overconfidence in reason alone"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Boethius was born into one of the last great Roman families at the exact moment the Roman world in the West was collapsing. The old imperial order was gone. Gothic kings ruled Italy. Greek learning was becoming harder for Latin Christians to access. The inheritance of classical civilization was in danger of being lost.\n\nBoethius decided to save what he could.\n\nHe became a scholar, translator, commentator, public servant, and eventually one of the highest officials under Theoderic the Great. He translated Aristotle's logic into Latin, wrote textbooks that would shape medieval education for centuries, and tried to hold together Roman learning, Christian faith, and practical political responsibility.\n\nThen he was accused of treason, imprisoned, and condemned.\n\nWhile waiting for death, Boethius wrote *The Consolation of Philosophy*—one of the most important books in Western history. In it, Philosophy appears to him as a lady who strips away self-pity and asks a harder question: what can fortune actually take from a man, and what remains if wisdom, virtue, and trust in providence are real?\n\nBoethius matters because he teaches that the final test of education is not brilliance in comfort but steadiness under unjust suffering. He stands at the hinge of history: the last Roman philosopher and one of the first great teachers of medieval Christendom.\n\n---",
         "Why He Matters for Your Child": "**Boethius teaches:**\n- That learning should prepare a person for loss, not just success\n- That public responsibility and contemplation belong together\n- That real freedom is inward before it is outward\n- That fortune is unstable, so character must be stable\n- That civilization survives when someone preserves and transmits what is best\n\n**But also warns against:**\n- Trusting proximity to power too much\n- Confusing honor with security\n- Turning philosophy into abstraction with no courage behind it\n- Using suffering as an excuse for self-pity instead of self-examination\n- Forgetting that political life can become dangerous very quickly\n\n---",
@@ -3778,6 +4259,7 @@
         "early",
         "excuse",
         "forgetting",
+        "fortitude",
         "fortune",
         "freedom",
         "honor",
@@ -3786,12 +4268,15 @@
         "intellectual",
         "interior",
         "inward",
+        "justice",
         "late",
         "learned",
         "learning",
         "life",
         "logic",
         "loss",
+        "magnanimity",
+        "magnificence",
         "medieval",
         "much",
         "must",
@@ -3805,6 +4290,7 @@
         "preserves",
         "prison",
         "proximity",
+        "prudence",
         "public",
         "quickly",
         "real",
@@ -3824,6 +4310,7 @@
         "suffering",
         "survives",
         "synthesis",
+        "temperance",
         "theology",
         "together",
         "too",
@@ -4071,6 +4558,45 @@
         ],
         "wordCount": 3774
       },
+      "spine": {
+        "magnanimity": {
+          "imitate": [
+            "Magnanimity"
+          ],
+          "guard": []
+        },
+        "temperance": {
+          "imitate": [
+            "Discipline"
+          ],
+          "guard": [
+            "Ruthlessness",
+            "Coercive zeal",
+            "Overextension"
+          ]
+        },
+        "justice": {
+          "imitate": [
+            "Piety"
+          ],
+          "guard": [
+            "Personalism"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Love of learning",
+            "Institution-building"
+          ],
+          "guard": []
+        },
+        "magnificence": {
+          "imitate": [
+            "Institution-building"
+          ],
+          "guard": []
+        }
+      },
       "sections": {
         "The One-Minute Story": "Charlemagne was born into a warrior dynasty that had seized responsibility for the Frankish people. He inherited a dangerous world: fragmented kingdoms, local violence, weak learning, uneven worship, and enemies on every frontier.\n\nHe became one of the most successful rulers in European history. He conquered Lombardy, fought the Saxons for more than thirty years, absorbed Bavaria, defeated the Avars, and was crowned Emperor in Rome on Christmas Day, 800.\n\nBut his deepest legacy was not conquest. Charlemagne wanted to form a Christian people. He gathered scholars like Alcuin of York, ordered schools to be established, corrected biblical and liturgical books, supported clearer handwriting, sent royal inspectors through the realm, and treated ignorance as a danger to civilization.\n\nHe also warns us. His zeal for unity sometimes became brutal coercion, especially in Saxony. Charlemagne teaches both the grandeur and danger of power: a ruler can use authority to build schools, preserve books, and reform worship—but he can also try to force souls by the sword.\n\n---",
         "Why He Matters for Your Child": "**Charlemagne teaches:**\n- Leadership as formation, not mere control\n- Love of learning even in adulthood\n- The civilizational importance of schools, books, worship, and law\n- That rulers need scholars, teachers, and wise counselors\n\n**But also warns against:**\n- Confusing religious zeal with coercion\n- Believing good ends justify harsh means\n- Building systems that depend too much on one powerful personality\n- Mistaking outward conformity for true conversion\n\n---",
@@ -4130,6 +4656,7 @@
         "history",
         "importance",
         "institution-building",
+        "justice",
         "justify",
         "king",
         "kingship",
@@ -4141,6 +4668,7 @@
         "literate",
         "love",
         "magnanimity",
+        "magnificence",
         "make",
         "manuscript",
         "means",
@@ -4160,6 +4688,7 @@
         "piety",
         "power",
         "powerful",
+        "prudence",
         "reform",
         "relations",
         "religion",
@@ -4176,6 +4705,7 @@
         "subject",
         "systems",
         "teachers",
+        "temperance",
         "too",
         "tried",
         "true",
@@ -4410,6 +4940,40 @@
         ],
         "wordCount": 2283
       },
+      "spine": {
+        "justice": {
+          "imitate": [
+            "Pedagogical charity",
+            "Fidelity"
+          ],
+          "guard": [
+            "Dependence on patrons"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Prudence",
+            "Textual care"
+          ],
+          "guard": []
+        },
+        "fortitude": {
+          "imitate": [
+            "Patience"
+          ],
+          "guard": [
+            "Courtly caution",
+            "Indirectness",
+            "Dependence on patrons"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "Vanity of learning"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Alcuin was not a king, general, or pope. He was a teacher from York.\n\nHe was formed in one of Europe's great schools, surrounded by Scripture, grammar, poetry, liturgy, careful Latin, and a library that preserved the memory of centuries. When he met Charlemagne in 781, the Frankish king saw what his empire lacked: not more soldiers, but a mind trained to build schools, correct books, teach leaders, and give learning a moral purpose.\n\nAlcuin came to Charlemagne's court and helped lead the palace school. He taught the king, nobles, clergy, and future leaders. He wrote letters, poems, textbooks, and theological counsel. He helped make the liberal arts central to the Carolingian Renaissance.\n\nHis greatness was quiet but immense. Charlemagne could order schools to exist. Alcuin knew what a school was for.\n\nHe also warned power. When conquest and Christian mission became confused in Saxony, Alcuin insisted that faith must be taught, not forced. He teaches students that language, books, teachers, and patient counsel can preserve civilization—and that wisdom must sometimes tell kings what they do not want to hear.\n\n---",
         "Why He Matters for Your Child": "**Alcuin teaches:**\n- The hidden power of teachers, books, and careful language\n- That grammar and clear thinking are moral disciplines\n- How quiet formation can outlast political force\n- The courage to counsel powerful people with patience and truth\n\n**But also warns against:**\n- Learning that becomes courtly vanity\n- Advising power without moral courage\n- Confusing school with mere information transfer\n- Thinking influence is the same as control\n\n---",
@@ -4457,6 +5021,7 @@
         "fidelity",
         "force",
         "formation",
+        "fortitude",
         "foundational",
         "gave",
         "grammar",
@@ -4466,12 +5031,14 @@
         "influence",
         "information",
         "institutional",
+        "justice",
         "language",
         "latin",
         "learning",
         "letters",
         "liberal",
         "limited",
+        "magnanimity",
         "manuscript",
         "matter",
         "medieval",
@@ -4740,6 +5307,45 @@
         ],
         "wordCount": 2248
       },
+      "spine": {
+        "fortitude": {
+          "imitate": [
+            "Intellectual courage",
+            "Perseverance"
+          ],
+          "guard": [
+            "Inflexibility",
+            "Conflict fatigue"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [
+            "Intellectual courage"
+          ],
+          "guard": []
+        },
+        "justice": {
+          "imitate": [
+            "Faithfulness",
+            "Integrity"
+          ],
+          "guard": []
+        },
+        "temperance": {
+          "imitate": [
+            "Teachability"
+          ],
+          "guard": [
+            "Severity"
+          ]
+        },
+        "prudence": {
+          "imitate": [],
+          "guard": [
+            "Abstraction"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Anselm was a monk with a brilliant mind and a serious soul.\n\nAs a young man, he left home in search of a teacher and found one at the abbey of Bec. There, under Lanfranc, he learned that faith and reason were not enemies. He became a monk, teacher, prior, abbot, writer, and eventually Archbishop of Canterbury.\n\nHis famous phrase was \"faith seeking understanding.\" He did not ask questions because he doubted truth. He asked because he loved truth and wanted to understand it more deeply. In works like the *Proslogion* and *Cur Deus Homo*, he showed students how prayer and logic can belong together.\n\nBut Anselm was not only a thinker. As archbishop, he resisted kings who wanted to control the Church. He endured exile rather than surrender conscience.\n\nHe teaches students that a mind should be trained, a soul should be honest, and a principle should be strong enough to survive pressure.\n\n---",
         "Why He Matters for Your Child": "**Anselm teaches:**\n- How faith and reason can work together\n- Why the right teacher can redirect an entire life\n- That serious questions can be acts of reverence\n- How conscience stands firm under pressure\n\n**But also warns against:**\n- Intelligence becoming severity\n- Principle becoming inflexibility\n- Thinking without prayer or humility\n- Winning arguments while losing charity\n\n---",
@@ -4777,6 +5383,7 @@
         "fatigue",
         "firm",
         "formation",
+        "fortitude",
         "high",
         "history",
         "humility",
@@ -4784,10 +5391,12 @@
         "integrity",
         "intellectual",
         "intelligence",
+        "justice",
         "leadership",
         "life",
         "logic",
         "losing",
+        "magnanimity",
         "medieval",
         "middle",
         "mind",
@@ -4802,6 +5411,7 @@
         "pressure",
         "pride",
         "principle",
+        "prudence",
         "questions",
         "reason",
         "redirect",
@@ -4820,6 +5430,7 @@
         "survive",
         "teachability",
         "teacher",
+        "temperance",
         "themes",
         "theology",
         "thinking",
@@ -5053,6 +5664,39 @@
         ],
         "wordCount": 2703
       },
+      "spine": {
+        "temperance": {
+          "imitate": [
+            "Humility",
+            "Intellectual discipline"
+          ],
+          "guard": [
+            "Impatience"
+          ]
+        },
+        "justice": {
+          "imitate": [
+            "Fairness",
+            "Reverence"
+          ],
+          "guard": []
+        },
+        "magnanimity": {
+          "imitate": [
+            "Vocation"
+          ],
+          "guard": [
+            "Argumentative pride"
+          ]
+        },
+        "prudence": {
+          "imitate": [],
+          "guard": [
+            "Abstraction",
+            "Over-systematizing"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Thomas Aquinas was a quiet boy from a noble family who became one of the most powerful minds in Christian history.\n\nHis family expected him to follow a respectable path. Thomas chose the Dominicans instead: a new order devoted to poverty, preaching, and study. His family resisted, but Thomas would not surrender his vocation.\n\nAt school, some students underestimated him because he was large, quiet, and slow to speak. They reportedly called him the \"Dumb Ox.\" His teacher Albert the Great saw deeper. Thomas was not empty. He was gathering strength.\n\nThomas became the great architect of medieval theology. In the *Summa Theologiae*, he trained students to ask hard questions, state objections fairly, make careful distinctions, and answer with order. He showed that faith and reason do not have to be enemies when both serve truth.\n\nNear the end of his life, after a profound religious experience, Thomas stopped writing. His silence teaches as much as his books: even the greatest mind must bow before mystery.\n\n---",
         "Why He Matters for Your Child": "**Thomas Aquinas teaches:**\n- How to think carefully without becoming proud\n- Why strong objections deserve fair answers\n- That quiet students may be building hidden strength\n- How faith and reason can work together in ordered wisdom\n\n**But also warns against:**\n- Abstraction without love\n- Winning arguments instead of seeking truth\n- Treating systems as bigger than reality\n- Confusing intelligence with holiness\n\n---",
@@ -5102,12 +5746,14 @@
         "instead",
         "intellectual",
         "intelligence",
+        "justice",
         "law",
         "learning",
         "life",
         "listening",
         "logic",
         "love",
+        "magnanimity",
         "makes",
         "material",
         "medieval",
@@ -5122,6 +5768,7 @@
         "philosophy",
         "pride",
         "proud",
+        "prudence",
         "quiet",
         "reality",
         "reason",
@@ -5137,6 +5784,7 @@
         "students",
         "subject",
         "systems",
+        "temperance",
         "themes",
         "theology",
         "think",
@@ -5373,6 +6021,50 @@
         ],
         "wordCount": 2802
       },
+      "spine": {
+        "magnanimity": {
+          "imitate": [
+            "Magnanimity",
+            "Friendship with excellence"
+          ],
+          "guard": [
+            "Dynastic ambition",
+            "Vanity of magnificence"
+          ]
+        },
+        "magnificence": {
+          "imitate": [
+            "Cultural stewardship"
+          ],
+          "guard": [
+            "Vanity of magnificence",
+            "Financial neglect"
+          ]
+        },
+        "justice": {
+          "imitate": [
+            "Cultural stewardship"
+          ],
+          "guard": [
+            "Informal tyranny",
+            "Dynastic ambition"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Prudence"
+          ],
+          "guard": [
+            "Financial neglect"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Courage"
+          ],
+          "guard": []
+        }
+      },
       "sections": {
         "The One-Minute Story": "Lorenzo de' Medici was not a king. Florence was officially a republic. But by the time Lorenzo inherited leadership of the Medici family at age twenty, his house had become the most powerful force in the city.\n\nHe used that power brilliantly. He gathered poets, philosophers, artists, architects, and scholars. He supported humanist learning, collected ancient texts and antiquities, wrote poetry, encouraged artists, and helped make Florence one of the great centers of the Renaissance.\n\nThen, in 1478, enemies tried to murder him and his brother during Mass in Florence's cathedral. Giuliano was killed. Lorenzo escaped wounded. War followed, and Lorenzo took the dangerous step of traveling personally to Naples to negotiate peace. He returned with greater prestige than before.\n\nHis greatness was real: he used wealth and influence to make excellence grow. But his danger was real too: Florence flourished under his personal rule while its republican habits weakened.\n\nLorenzo teaches students that resources should be stewarded toward beauty, learning, friendship, and greatness — and that even magnificent leadership must strengthen institutions, not merely depend on one brilliant family.\n\n---",
         "Why He Matters for Your Child": "**Lorenzo teaches:**\n- How patronage can help artists, scholars, and cities flourish\n- That wealth and influence are tools for stewardship, not display\n- The importance of gathering excellent friends and teachers\n- Courage under political crisis\n\n**But also warns against:**\n- Using generosity to hide control\n- Letting culture become vanity instead of virtue\n- Neglecting practical foundations while funding beautiful projects\n- Building a system too dependent on one person or family\n\n---",
@@ -5435,6 +6127,7 @@
         "form",
         "forming",
         "forms",
+        "fortitude",
         "foundations",
         "fragility",
         "friend",
@@ -5457,6 +6150,7 @@
         "informal",
         "instead",
         "institutions",
+        "justice",
         "leadership",
         "letting",
         "literature",
@@ -5731,6 +6425,46 @@
         "whenToReference": [],
         "wordCount": 2737
       },
+      "spine": {
+        "justice": {
+          "imitate": [
+            "Learned piety"
+          ],
+          "guard": [
+            "Elitism"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Learned piety",
+            "Eloquence",
+            "Source discipline"
+          ],
+          "guard": []
+        },
+        "magnanimity": {
+          "imitate": [
+            "Intellectual independence"
+          ],
+          "guard": []
+        },
+        "temperance": {
+          "imitate": [
+            "Peaceableness",
+            "Source discipline"
+          ],
+          "guard": [
+            "Sharp satire"
+          ]
+        },
+        "fortitude": {
+          "imitate": [],
+          "guard": [
+            "Over-caution",
+            "Rootlessness"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Erasmus was one of the most famous scholars in Europe at the beginning of the Reformation.\n\nHe was born in Rotterdam, educated by teachers shaped by the *Devotio Moderna*, and pushed into religious life before finding his true vocation as a wandering scholar. He traveled through Europe, made friends with men like Thomas More and John Colet, worked with great printers, and became a teacher to thousands through his books.\n\nErasmus believed Christian renewal should begin with learning, Scripture, clear language, inward devotion, and peace. He wrote *The Praise of Folly*, a brilliant satire of human vanity. He produced the 1516 Greek-Latin New Testament, helping Europe return to the biblical sources. He wrote educational works because he believed children could be formed toward wisdom and virtue.\n\nBut Erasmus lived in an age when moderation became difficult. Protestants thought he saw the problems but lacked courage. Catholics suspected his criticisms helped unleash rebellion. He wanted reform without schism, peace without cowardice, and learning without pride.\n\nHe teaches students that words matter, sources matter, education matters, and wit must serve charity.\n\n---",
         "Why He Matters for Your Child": "**Erasmus teaches:**\n- Why careful reading and clear language matter\n- How education can become moral formation\n- The courage to return to original sources\n- The value of peace, moderation, and intellectual independence\n\n**But also warns against:**\n- Cleverness without charity\n- Criticism that does not build\n- Caution that becomes evasion\n- Scholarship detached from institutions and action\n\n---",
@@ -5766,13 +6500,16 @@
         "evasion",
         "form",
         "formation",
+        "fortitude",
         "humanism",
         "independence",
         "institutions",
         "intellectual",
+        "justice",
         "language",
         "learned",
         "learning",
+        "magnanimity",
         "matter",
         "moderation",
         "moral",
@@ -5784,6 +6521,7 @@
         "peaceableness",
         "piety",
         "produce",
+        "prudence",
         "reading",
         "reform",
         "reformation",
@@ -5797,6 +6535,7 @@
         "sharp",
         "source",
         "sources",
+        "temperance",
         "tried",
         "value",
         "without",
@@ -6024,6 +6763,42 @@
         "whenToReference": [],
         "wordCount": 2798
       },
+      "spine": {
+        "temperance": {
+          "imitate": [
+            "Disciplined curiosity"
+          ],
+          "guard": [
+            "Combative rhetoric"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Disciplined curiosity",
+            "Mathematical clarity",
+            "Craftsmanship"
+          ],
+          "guard": [
+            "Imprudence"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Courage",
+            "Resilience"
+          ],
+          "guard": [
+            "Courtly ambition"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "Courtly ambition",
+            "Intellectual pride"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Galileo Galilei was an Italian mathematician, astronomer, and natural philosopher who helped change how Europe studied nature.\n\nHe was born in Pisa, trained first for medicine, and then chose mathematics. At Padua he taught, built instruments, advised on engineering, studied motion, and learned to join mathematical reasoning with practical experiment. In 1609 he heard of the spyglass, improved it, and turned it toward the heavens.\n\nWhat he saw changed the world: mountains on the Moon, countless stars, moons circling Jupiter, the phases of Venus, and sunspots. These observations damaged the old picture of perfect heavens circling a fixed Earth and strengthened the case for Copernicus's sun-centered system.\n\nGalileo became famous, powerful, and controversial. His *Dialogue Concerning the Two Chief World Systems* defended Copernicanism so vividly that he was tried by the Roman Inquisition in 1633, forced to abjure, and confined under house arrest. Yet even then he wrote *Two New Sciences*, a foundational work for modern mechanics.\n\nHe teaches students to look carefully, measure honestly, think mathematically, speak courageously, and keep working after defeat.\n\n---",
         "Why He Matters for Your Child": "**Galileo teaches:**\n- Why observation matters more than repeated assumptions\n- How mathematics can clarify nature\n- Why tools and craftsmanship extend the mind\n- Courage in following evidence\n- Resilience after public defeat\n\n**But also warns against:**\n- Sarcasm that humiliates opponents\n- Overconfidence in one's own brilliance\n- Ignoring politics, timing, and tone\n- Thinking that being right removes the need for prudence\n\n---",
@@ -6054,6 +6829,7 @@
         "evidence",
         "extend",
         "following",
+        "fortitude",
         "galilei",
         "galileo",
         "humiliates",
@@ -6062,6 +6838,7 @@
         "independence",
         "intellectual",
         "look",
+        "magnanimity",
         "mathematical",
         "mathematics",
         "matters",
@@ -6095,6 +6872,7 @@
         "scientific",
         "speak",
         "taught",
+        "temperance",
         "thinking",
         "timing",
         "tone",
@@ -6323,6 +7101,49 @@
         "whenToReference": [],
         "wordCount": 2711
       },
+      "spine": {
+        "prudence": {
+          "imitate": [
+            "Clarity",
+            "Method",
+            "Mathematical discipline"
+          ],
+          "guard": [
+            "Excessive doubt",
+            "Abstraction"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Intellectual courage",
+            "Persistence"
+          ],
+          "guard": []
+        },
+        "magnanimity": {
+          "imitate": [
+            "Intellectual courage"
+          ],
+          "guard": [
+            "System-pride"
+          ]
+        },
+        "temperance": {
+          "imitate": [
+            "Mathematical discipline"
+          ],
+          "guard": [
+            "Excessive doubt",
+            "Isolation"
+          ]
+        },
+        "justice": {
+          "imitate": [],
+          "guard": [
+            "Isolation"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "René Descartes was a French philosopher, mathematician, and natural philosopher who helped change where modern thought begins.\n\nHe was educated by Jesuits at La Flèche, trained in law at Poitiers, and then chose travel, military service, mathematics, and independent study. A meeting with Isaac Beeckman awakened his work in mathematical physics. Descartes came to believe that the mind needed a better method: accept only what is clear, divide problems into parts, proceed in order, and review carefully.\n\nIn *Discourse on Method* and *Meditations on First Philosophy*, he used methodic doubt to search for certainty. His famous “I think, therefore I am” was not a slogan of self-expression. It was the point he believed could not be doubted: if I am thinking, I exist.\n\nDescartes also helped found analytic geometry and gave his name to Cartesian coordinates. His mind-body dualism shaped modern philosophy, psychology, and science — while also creating problems thinkers still debate.\n\nHe teaches students to think clearly, question assumptions, divide hard problems, and use doubt in service of truth.\n\n---",
         "Why He Matters for Your Child": "**Descartes teaches:**\n- How to seek clarity instead of confusion\n- Why hard problems should be divided into parts\n- How disciplined doubt can test assumptions\n- The power of mathematics as a model of order\n- That intelligence needs method, not just speed\n\n**But also warns against:**\n- Doubting as a habit rather than a tool\n- Excessive abstraction\n- Treating human beings as minds without bodies\n- Overconfidence in a system\n- Isolation from tradition, community, and ordinary experience\n\n---",
@@ -6353,6 +7174,7 @@
         "early",
         "excessive",
         "experience",
+        "fortitude",
         "foundations",
         "ground",
         "habit",
@@ -6363,7 +7185,9 @@
         "intellectual",
         "intelligence",
         "isolation",
+        "justice",
         "know",
+        "magnanimity",
         "mathematical",
         "mathematics",
         "metaphysics",
@@ -6385,6 +7209,7 @@
         "problem",
         "problems",
         "proceed",
+        "prudence",
         "rather",
         "remember",
         "ren",
@@ -6396,6 +7221,7 @@
         "speed",
         "system",
         "system-pride",
+        "temperance",
         "test",
         "tool",
         "tradition",
@@ -6633,6 +7459,49 @@
         ],
         "wordCount": 2581
       },
+      "spine": {
+        "temperance": {
+          "imitate": [
+            "Concentration",
+            "Exactness",
+            "Restraint"
+          ],
+          "guard": [
+            "Harshness",
+            "Overcontrol",
+            "Isolation"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Exactness"
+          ],
+          "guard": []
+        },
+        "fortitude": {
+          "imitate": [
+            "Intellectual courage",
+            "Patience"
+          ],
+          "guard": [
+            "Secrecy"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [
+            "Intellectual courage"
+          ],
+          "guard": []
+        },
+        "justice": {
+          "imitate": [],
+          "guard": [
+            "Suspicion",
+            "Overcontrol",
+            "Isolation"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Isaac Newton was a lonely, intense boy from rural England who became one of the greatest mathematical minds in history.\n\nWhen plague closed Cambridge, Newton returned to Woolsthorpe. Instead of wasting the interruption, he used solitude for concentrated study. In those years he developed early work in calculus, optics, and the mathematics of motion. Later, Edmond Halley asked him a question about planetary motion that drew years of hidden work into public form.\n\nThe result was the *Principia*, the book that joined heaven and earth under one mathematical order. The same kind of force that pulls an apple downward helps hold the Moon in orbit. Motion, gravity, tides, comets, planets — all could be studied through law.\n\nNewton teaches students disciplined concentration, exact observation, and the courage to follow a question until it becomes proof.\n\nBut he also warns them: brilliance without charity can become harsh. Newton was often suspicious and severe in controversy. He shows that a great mind still needs a formed soul.\n\n---",
         "Why He Matters for Your Child": "**Newton teaches:**\n- How patient concentration turns curiosity into discovery\n- Why mathematics can reveal order in nature\n- How solitude can become disciplined work\n- Why evidence matters more than guessing\n- How one good question can summon years of preparation\n\n**But also warns against:**\n- Pride in being right\n- Resentment toward critics\n- Hiding work instead of sharing it\n- Using authority to win disputes\n- Mistaking brilliance for wisdom\n\n---",
@@ -6678,6 +7547,7 @@
         "feign",
         "force",
         "formation",
+        "fortitude",
         "found",
         "friendship",
         "good",
@@ -6691,7 +7561,9 @@
         "invent",
         "isaac",
         "isolation",
+        "justice",
         "laws",
+        "magnanimity",
         "mathematical",
         "mathematics",
         "matters",
@@ -6715,6 +7587,7 @@
         "physics",
         "preparation",
         "pride",
+        "prudence",
         "public",
         "publication",
         "publish",
@@ -6737,6 +7610,7 @@
         "summon",
         "suspicion",
         "talent",
+        "temperance",
         "too",
         "toward",
         "turns",
@@ -6990,6 +7864,50 @@
         ],
         "wordCount": 2542
       },
+      "spine": {
+        "fortitude": {
+          "imitate": [
+            "Industry"
+          ],
+          "guard": []
+        },
+        "temperance": {
+          "imitate": [
+            "Discipline"
+          ],
+          "guard": [
+            "Aggression"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Strategic clarity",
+            "Administrative seriousness"
+          ],
+          "guard": [
+            "Cynicism"
+          ]
+        },
+        "magnificence": {
+          "imitate": [
+            "Cultivation"
+          ],
+          "guard": []
+        },
+        "justice": {
+          "imitate": [],
+          "guard": [
+            "Coldness",
+            "State idolatry"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "Pride of success"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Frederick the Great was a prince who loved music, books, French literature, and philosophy, but he was raised by a harsh father who demanded military obedience. As a young man, Frederick tried to flee. The plan failed, his friend Katte was executed, and Frederick learned how terrible power could be.\n\nWhen he became king of Prussia in 1740, he did not become lazy. He worked. He read reports, inspected troops, supervised officials, supported legal reform, corresponded with philosophers, played the flute, and built Sanssouci. He described the sovereign as “the first servant of the State.”\n\nBut Frederick also seized Silesia from Austria and helped plunge Europe into war. He made Prussia powerful, but at a grave human cost. He teaches students discipline, duty, strategic clarity, and the seriousness of leadership.\n\nHe also warns them: power can make a brilliant person cold. Success is not the same as justice.\n\n---",
         "Why He Matters for Your Child": "**Frederick teaches:**\n- That leadership is work before privilege\n- How discipline and preparation can preserve a people in crisis\n- Why culture and command can belong together\n- The importance of law, administration, and attention to detail\n- How serious responsibility demands personal industry\n\n**But also warns against:**\n- Ambition without moral restraint\n- Treating victory as proof of justice\n- Hardness of soul\n- Using the state as an excuse for aggression\n- Saying noble things while acting opportunistically\n\n---",
@@ -7027,6 +7945,7 @@
         "europe",
         "excuse",
         "first",
+        "fortitude",
         "frederick",
         "god",
         "great",
@@ -7043,6 +7962,8 @@
         "law",
         "leadership",
         "made",
+        "magnanimity",
+        "magnificence",
         "military",
         "modern",
         "monarchy",
@@ -7057,6 +7978,7 @@
         "pride",
         "privilege",
         "proof",
+        "prudence",
         "prussia",
         "reform",
         "religious",
@@ -7077,6 +7999,7 @@
         "strategic",
         "success",
         "succession",
+        "temperance",
         "together",
         "toleration",
         "treating",
@@ -7315,6 +8238,46 @@
         ],
         "wordCount": 2827
       },
+      "spine": {
+        "temperance": {
+          "imitate": [
+            "Self-command",
+            "Restraint"
+          ],
+          "guard": [
+            "Status hunger"
+          ]
+        },
+        "fortitude": {
+          "imitate": [
+            "Perseverance"
+          ],
+          "guard": [
+            "Caution without imagination"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Prudence"
+          ],
+          "guard": []
+        },
+        "justice": {
+          "imitate": [
+            "Public duty"
+          ],
+          "guard": [
+            "Emotional distance",
+            "Moral compromise"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "Status hunger"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "George Washington was the soldier-statesman who helped teach a new republic what power was for.\n\nAs a young Virginian, he wanted honor and advancement. He learned surveying, manners, frontier hardship, and military command. He also learned from failure. Early defeats in the French and Indian War humbled him and trained him for larger responsibility.\n\nWhen the American colonies rebelled against Britain, Washington became commander of the Continental Army. He did not win by constant brilliance. He won by endurance: keeping the army together, learning from mistakes, and refusing to let the cause collapse.\n\nHis greatest moments came after victory. He resigned his military command instead of becoming a ruler. He helped preside over the Constitutional Convention. As first president, he established habits of constitutional government, then retired after two terms.\n\nWashington teaches students that true greatness is not merely taking command. It is commanding yourself, serving a cause larger than yourself, and giving power back when duty is done.\n\nHe must also be taught honestly: Washington enslaved people at Mount Vernon. His virtues were real, and so was this grave contradiction.\n\n---",
         "Why He Matters for Your Child": "**Washington teaches:**\n- How self-command makes leadership possible\n- Why endurance can matter more than brilliance\n- That public office is a trust, not a possession\n- How one person's example can shape a whole republic\n\n**But also warns against:**\n- Ambition disguised as honor\n- Reputation becoming too important\n- Moral blindness inside a respected culture\n- Praising liberty while tolerating injustice\n\n---",
@@ -7354,6 +8317,7 @@
         "executive",
         "figures",
         "first",
+        "fortitude",
         "founding",
         "gave",
         "george",
@@ -7368,9 +8332,11 @@
         "injustice",
         "inside",
         "judged",
+        "justice",
         "leadership",
         "liberty",
         "limited",
+        "magnanimity",
         "makes",
         "man",
         "matter",
@@ -7407,6 +8373,7 @@
         "social",
         "statesmanship",
         "status",
+        "temperance",
         "tolerating",
         "too",
         "transfer",
@@ -7645,6 +8612,43 @@
         "whenToReference": [],
         "wordCount": 2643
       },
+      "spine": {
+        "prudence": {
+          "imitate": [
+            "Love of learning",
+            "Eloquence",
+            "Civic imagination",
+            "Educational seriousness"
+          ],
+          "guard": [
+            "Abstraction",
+            "Self-deception",
+            "Aesthetic escape"
+          ]
+        },
+        "justice": {
+          "imitate": [
+            "Civic imagination",
+            "Defense of conscience"
+          ],
+          "guard": [
+            "Moral contradiction",
+            "Partisan suspicion"
+          ]
+        },
+        "magnificence": {
+          "imitate": [
+            "Educational seriousness"
+          ],
+          "guard": []
+        },
+        "fortitude": {
+          "imitate": [],
+          "guard": [
+            "Aesthetic escape"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Thomas Jefferson wrote the most famous words in American political history: “all men are created equal.”\n\nHe was the principal author of the Declaration of Independence, a defender of religious liberty, the third president of the United States, the president who purchased Louisiana, and the founder of the University of Virginia. His mind ranged across law, architecture, languages, agriculture, science, music, and education.\n\nJefferson believed a republic could not stay free unless its citizens were educated enough to think, read, and judge for themselves. He loved books because he believed free minds mattered.\n\nBut Jefferson also lived a grave contradiction. He enslaved people at Monticello while writing about liberty. He spoke truths that judged his own life. That does not make the truths false; it makes the man morally serious to study.\n\nHe teaches students the power of words, the necessity of education, the dignity of conscience, and the danger of believing great principles without fully living them.\n\n---",
         "Why He Matters for Your Child": "**Jefferson teaches:**\n- That words can shape nations and moral imagination\n- Why liberty requires educated citizens\n- The importance of freedom of conscience and religious liberty\n- Intellectual breadth: law, languages, architecture, science, music, and public service\n\n**But also warns against:**\n- Saying true things while living falsely\n- Intellectual brilliance without moral obedience\n- Political partisanship that becomes suspicion\n- Debt, self-deception, and dependence on unjust systems\n\n---",
@@ -7677,6 +8681,7 @@
         "eloquence",
         "escape",
         "falsely",
+        "fortitude",
         "found",
         "founding",
         "freedom",
@@ -7690,6 +8695,7 @@
         "institutions",
         "intellectual",
         "jefferson",
+        "justice",
         "languages",
         "law",
         "learning",
@@ -7697,6 +8703,7 @@
         "life",
         "living",
         "love",
+        "magnificence",
         "mind",
         "modern",
         "moral",
@@ -7710,6 +8717,7 @@
         "political",
         "practice",
         "protects",
+        "prudence",
         "public",
         "real",
         "religious",
@@ -7962,6 +8970,53 @@
         "whenToReference": [],
         "wordCount": 2420
       },
+      "spine": {
+        "temperance": {
+          "imitate": [
+            "Discipline"
+          ],
+          "guard": [
+            "Control",
+            "Glory addiction",
+            "Overreach"
+          ]
+        },
+        "prudence": {
+          "imitate": [
+            "Strategic imagination",
+            "Institution-building"
+          ],
+          "guard": []
+        },
+        "fortitude": {
+          "imitate": [
+            "Energy"
+          ],
+          "guard": []
+        },
+        "justice": {
+          "imitate": [
+            "Merit"
+          ],
+          "guard": [
+            "Control"
+          ]
+        },
+        "magnificence": {
+          "imitate": [
+            "Institution-building"
+          ],
+          "guard": []
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "Ambition",
+            "Pride",
+            "Glory addiction"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Napoleon Bonaparte was a young Corsican artillery officer who rose through the chaos of the French Revolution by ability, discipline, and daring.\n\nHe won fame at Toulon, dazzled Europe in the Italian campaign, seized power in the coup of 18 Brumaire, became First Consul, and then crowned himself Emperor of the French. He reorganized France, supported the Civil Code, strengthened administration, founded lycées, and opened careers to talent.\n\nBut Napoleon could not stop expanding power. The man who promised order after revolution became a ruler of censorship, dynasty, conquest, and war. His victories made him believe he could bend Europe to his will. Russia proved otherwise. Waterloo ended the imperial dream.\n\nHe teaches students that disciplined talent can change history—but ability without moral limits can destroy what it builds.\n\n---",
         "Why He Matters for Your Child": "**Napoleon teaches:**\n- Discipline, study, and concentration of effort\n- Strategic thinking: finding the decisive point\n- Merit and administrative order\n- That laws and institutions can outlast victories\n\n**But also warns against:**\n- Ambition without limits\n- Confusing order with liberty\n- Glory becoming an addiction\n- Letting success become proof that no one may correct you\n\n---",
@@ -7993,6 +9048,7 @@
         "enough",
         "europe",
         "finding",
+        "fortitude",
         "glory",
         "government",
         "human",
@@ -8000,11 +9056,14 @@
         "institution-building",
         "institutions",
         "judges",
+        "justice",
         "law",
         "laws",
         "letting",
         "liberty",
         "limits",
+        "magnanimity",
+        "magnificence",
         "merit",
         "military",
         "modern",
@@ -8019,6 +9078,7 @@
         "point",
         "pride",
         "proof",
+        "prudence",
         "reality",
         "revolution",
         "revolutionary",
@@ -8027,6 +9087,7 @@
         "study",
         "success",
         "talent",
+        "temperance",
         "thinking",
         "turned",
         "victories",
@@ -8264,6 +9325,46 @@
         "whenToReference": [],
         "wordCount": 2410
       },
+      "spine": {
+        "fortitude": {
+          "imitate": [
+            "Courage",
+            "Industry",
+            "Resilience"
+          ],
+          "guard": []
+        },
+        "prudence": {
+          "imitate": [
+            "Eloquence",
+            "Historical imagination"
+          ],
+          "guard": [
+            "Imperial blindness",
+            "Romantic war-language"
+          ]
+        },
+        "temperance": {
+          "imitate": [],
+          "guard": [
+            "Impulsiveness",
+            "Restlessness",
+            "Romantic war-language"
+          ]
+        },
+        "magnanimity": {
+          "imitate": [],
+          "guard": [
+            "Pride"
+          ]
+        },
+        "justice": {
+          "imitate": [],
+          "guard": [
+            "Imperial blindness"
+          ]
+        }
+      },
       "sections": {
         "The One-Minute Story": "Winston Churchill was born into an aristocratic British family, struggled through parts of school, became a cavalry officer, war correspondent, author, and politician, and spent decades building a public life full of brilliance, mistakes, ambition, and recovery.\n\nIn the First World War, his support for the Gallipoli campaign ended in disaster and disgrace. In the 1930s, while out of high office, he warned that Hitler's Germany was a danger Britain could not appease forever. Many thought him alarmist. Events proved him necessary.\n\nIn May 1940, when France was collapsing and Britain faced invasion, Churchill became Prime Minister. His speeches did not pretend victory was easy. They told the truth about danger and summoned courage: blood, toil, tears, sweat; fighting on the beaches; never surrendering; the finest hour.\n\nHe teaches students that words can become an act of courage when they are truthful, disciplined, and joined to action. He also warns that even great defenders of liberty can have blind spots, especially Churchill's lifelong attachment to empire.\n\n---",
         "Why He Matters for Your Child": "**Churchill teaches:**\n- Courage under pressure\n- The moral power of truthful speech\n- Long preparation before crisis\n- Recovery after public failure\n- Historical memory as a guide to action\n\n**But also warns against:**\n- Reckless boldness without prudence\n- Pride and theatrical self-importance\n- Imperial blindness\n- Confusing rhetoric with wisdom\n- Being right about one danger while wrong about others\n\n---",
@@ -8290,6 +9391,7 @@
         "empire",
         "failure",
         "formation",
+        "fortitude",
         "great",
         "guide",
         "historical",
@@ -8299,6 +9401,7 @@
         "impulsiveness",
         "industry",
         "judged",
+        "justice",
         "language",
         "leadership",
         "long",
@@ -8333,6 +9436,7 @@
         "statesmanship",
         "still",
         "surrender",
+        "temperance",
         "theatrical",
         "truth",
         "truthful",

@@ -11,6 +11,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { FIGURES, type FigureSeed } from "./catalog.js";
+import { virtueSpine } from "./spine.js";
 import {
   AGE_RANGES,
   type AgeRange,
@@ -325,6 +326,7 @@ export function tokenize(text: string): string[] {
 }
 
 function keywordsFor(p: Omit<Profile, "keywords">): string[] {
+  const spineNames = Object.keys(p.spine);
   const bag = new Set<string>();
   const add = (s: string | undefined) => s && tokenize(s).forEach((t) => bag.add(t));
   add(p.name);
@@ -339,6 +341,7 @@ function keywordsFor(p: Omit<Profile, "keywords">): string[] {
   p.warnsAgainst.forEach(add);
   p.research.coreLessons.forEach(add);
   p.research.whenToReference.forEach(add);
+  spineNames.forEach((n) => bag.add(n));
   return [...bag].sort();
 }
 
@@ -388,6 +391,8 @@ export function parseProfile(root: string, slug: string): Profile {
   if (!wp) throw new ProfileParseError(`Missing ${wpRel}`);
   if (!rs) throw new ProfileParseError(`Missing ${rsRel}`);
 
+  const signature = sig ? parseFormationSignature(sig.body) : { virtues: [], risks: [], formedBy: [] };
+  const research = parseResearch(rsRel, rs);
   const partial: Omit<Profile, "keywords"> = {
     slug,
     name,
@@ -403,13 +408,14 @@ export function parseProfile(root: string, slug: string): Profile {
     teaches: whyParsed.teaches,
     warnsAgainst: whyParsed.warnsAgainst,
     formationChallenge: whyParsed.formationChallenge,
-    signature: sig ? parseFormationSignature(sig.body) : { virtues: [], risks: [], formedBy: [] },
+    signature,
     quickPractice: quick ? parseQuickPractice(quick.body) : { "8-10": [], "11-14": [], "15-18": [] },
     sequenceNote: seq ? seq.body.trim() : undefined,
     lessons,
     parentGuide: parseParentGuide(pgRel, pg),
     weekPlan: parseWeekPlan(wpRel, wp),
-    research: parseResearch(rsRel, rs),
+    research,
+    spine: virtueSpine({ signature, research }),
     sections: rawSections,
   };
   return { ...partial, keywords: keywordsFor(partial) };

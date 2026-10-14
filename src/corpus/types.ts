@@ -7,6 +7,8 @@
  * the source of truth.
  */
 
+import type { VirtueSpine } from "./spine.js";
+
 export type EraGroup = "ancient" | "medieval" | "renaissance" | "modern";
 
 /** The three student-lesson age ranges shipped with every profile. */
@@ -116,6 +118,8 @@ export interface Profile {
   research: ResearchSummary;
   /** Raw README sections keyed by H2 title, markdown preserved, for verbatim lookup. */
   sections: Record<string, string>;
+  /** The figure's virtues and risks mapped onto the six-virtue spine (see spine.ts). */
+  spine: VirtueSpine;
   /** Lower-cased search terms drawn from virtues, risks, lessons, domain and subtitle. */
   keywords: string[];
 }

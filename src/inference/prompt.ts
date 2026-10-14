@@ -9,9 +9,10 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import type { Corpus, Profile } from "../corpus/types.js";
 import { ERA_LABELS } from "../corpus/catalog.js";
+import { SPINE, SPINE_ORDER, spineIndex } from "../corpus/spine.js";
 import { BANDS, type Band } from "./bands.js";
 
-export const PROMPT_VERSION = "3.0";
+export const PROMPT_VERSION = "3.1";
 
 /** The unified persona: one tutor, three internal engines. Adapted from System Prompt v2 (Feb 2026). */
 export const PERSONA_PROMPT = `You are a mentor in the classical tradition: a learned guide who speaks plainly, challenges carefully, and expects excellence. You stand in the line of Aristotle, Seneca, Alcuin and the great teachers who formed great men. You teach for Nova Schola.
@@ -57,7 +58,9 @@ Students may be children. Do not ask for personal information beyond what you ar
 
 # The mission
 
-You do not teach content. You form minds. Every interaction moves the student toward excellence: not compliance, not performance, but genuine formation in the classical tradition. History is the biography of great men. Your student may become one of them.`;
+Nova Schola exists to train a new elite in an aristocratic pattern, in order to restore civilization. Aristocracy here means what Aristotle meant: the rule of the best, where "best" is earned by virtue and never inherited or bought. Civilization is restored by transmission, not invention: Boethius translating in his cell, Alcuin building a schoolroom for an empire, Erasmus with his texts, the Academy that outlived Plato by nine centuries. You stand beside this student as Aristotle stood beside Alexander; the family and the school you serve are the institution that carries forward what you teach.
+
+So you do not teach content. You form a person who may one day hold power and must deserve it. You expect work before explanation and you speak unkind truths kindly. Every interaction moves the student toward excellence: not compliance, not performance, but genuine formation in the classical tradition. History is the biography of great men. Your student may become one of them, and the civilization they inherit depends on it.`;
 
 export const PARENT_MODE_ADDENDUM = `# Who you are speaking with
 
@@ -95,6 +98,31 @@ export function digestEntry(p: Profile): string {
   return lines.join("\n");
 }
 
+/**
+ * The virtue spine as the tutor sees it: six virtues, each with its question and
+ * the figures to imitate or guard against. Roughly 600 tokens. Stable until the
+ * corpus changes.
+ */
+export function spineDigest(corpus: Corpus): string {
+  const index = spineIndex(corpus.figures);
+  const lines: string[] = [
+    "# The virtue spine",
+    "",
+    "Every life in the library is taught through six virtues: the four cardinal virtues and the two great-souled virtues of Aristotle's Ethics. When you teach a life, name the virtue it exemplifies and the vice it warns against, in the same breath. When you form a student, name the virtue their situation calls for. Virtue labels in the digest below map onto this spine.",
+    "",
+  ];
+  for (const v of SPINE_ORDER) {
+    const spec = SPINE[v];
+    const entries = index[v];
+    const imitate = entries.filter((e) => e.imitate.length).slice(0, 7).map((e) => `${e.name} (${e.imitate[0]!.toLowerCase()})`);
+    const guard = entries.filter((e) => e.guard.length).slice(0, 7).map((e) => `${e.name} (${e.guard[0]!.toLowerCase()})`);
+    lines.push(`${spec.virtue.charAt(0).toUpperCase() + spec.virtue.slice(1)} (${spec.greek}): ${spec.definition} Ask: "${spec.question}"`);
+    if (imitate.length) lines.push(`  Imitate: ${imitate.join("; ")}.`);
+    if (guard.length) lines.push(`  Guard: ${guard.join("; ")}.`);
+  }
+  return lines.join("\n");
+}
+
 /** The digest of every figure, in sequence order. Roughly 3-4K tokens for 25 figures. */
 export function corpusDigest(corpus: Corpus): string {
   const figures = [...corpus.figures].sort((a, b) => a.day - b.day);
@@ -109,7 +137,7 @@ export interface SystemPromptOptions {
 
 /**
  * Build the `system` blocks. Order (stable -> less stable): persona, band
- * calibration, parent-mode addendum, operator notes, library digest. The
+ * calibration, parent-mode addendum, operator notes, virtue spine, library digest. The
  * breakpoint sits on the last block so tools + system cache together.
  */
 export function buildSystemPrompt(
@@ -120,6 +148,7 @@ export function buildSystemPrompt(
   const parts: string[] = [PERSONA_PROMPT, `# Developmental calibration\n\n${BANDS[band].calibration}`];
   if (options.parentMode) parts.push(PARENT_MODE_ADDENDUM);
   if (options.operatorNotes?.trim()) parts.push(`# Operator notes\n\n${options.operatorNotes.trim()}`);
+  parts.push(spineDigest(corpus));
   parts.push(corpusDigest(corpus));
   const blocks: Anthropic.Beta.Messages.BetaTextBlockParam[] = parts.map((text) => ({ type: "text", text }));
   const last = blocks[blocks.length - 1]!;

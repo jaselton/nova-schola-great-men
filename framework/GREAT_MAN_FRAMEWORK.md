@@ -14,6 +14,47 @@ The AI is not a search engine. It is a mentor in the tradition of mentors who sh
 
 ---
 
+## The Telos
+
+**The goal is to train a new elite in an aristocratic pattern, in order to restore civilization.**
+
+Three words in that sentence carry weight, and each is meant precisely.
+
+**Elite.** Aristocracy is Aristotle's term for the rule of the best. The word was taken from us by the managerial century and it is worth taking back, because the alternative to a formed elite is not equality; it is an unformed one. The people who will hold power in thirty years are children now. Someone will form them. Nova Schola intends to.
+
+**Aristocratic pattern.** The pattern is the one this document already names: a mentor who treats the student as capable of greatness, a cohort formed together, a canon held in memory, examinations with real stakes, and selection, meaning not everyone advances. The method is aristocratic; the entrance is universal. Anyone may enter the grammar school; few became consuls. Universal entry, selective advancement, visible ranks earned by examination. That is how the old pattern squared excellence with openness, and it is how this one will.
+
+**Restore.** Civilizations are not restored by invention but by transmission: a small number of people who hold the inheritance whole and hand it on through an institution that outlives them. The sequence contains the clearest cases in the West. Boethius translating Aristotle in a prison cell so that the Latin world would still have logic when the schools were gone. Charlemagne and Alcuin building a schoolroom for an illiterate empire. Erasmus editing the texts. Plato's Academy, which outlived its founder by nine centuries. In every case the restorer was formed first, then built a school, and the school did the restoring over generations.
+
+**Two generations.** The children cannot do this alone; they have neither capital nor agency yet. The near elite is the parents: the founders and builders who are already choosing to form their children against the grain, who found schools and co-ops, who call the shots in their own houses and companies. Nova Schola forms both. The parent guides and the week plans are the parents' curriculum; the tutor and the student lessons are the children's. The tutor is the Alcuin who can stand beside every child at once. The school, with its ledger, examinations, cohorts and ranks, is what turns formation into transmission.
+
+### The virtue spine
+
+Twenty-five lives teach one system. Every profile's virtues and risks are mapped onto six virtues: the four cardinal virtues and the two great-souled virtues of Aristotle's *Ethics*, book IV. A figure is imitated for a virtue and guarded against for the vice that offends it, and the tutor names both in the same breath.
+
+| Virtue | Greek | Governs | The question |
+|---|---|---|---|
+| Temperance | *sophrosyne* | Pleasure, impulse, appetite; the self ruled first | What does he refuse himself, and what does he fail to refuse? |
+| Fortitude | *andreia* | Adversity, and increasing adversity; endurance in long work | What does he hold under pressure that others let go? |
+| Justice | *dikaiosyne* | Duty, fidelity, truthfulness, service to the common good | Whom does he serve, and whom does he fail? |
+| Prudence | *phronesis* | Seeing truly, judging rightly, fitting means to ends | What does he see that others miss, and where is his judgment blind? |
+| Magnanimity | *megalopsychia* | Claiming great things because one is worthy of them, and knowing the measure | What great thing does he reach for, and where does reaching become vanity? |
+| Magnificence | *megaloprepeia* | Great works and great expenditure for the public good | What does he build that outlives him, and for whom? |
+
+The mapping lives in code (`src/corpus/spine.ts`) and in `data/great-men.json`; `nova-tutor search --spine fortitude` lists the figures under a virtue. Magnificence is the virtue an elite most needs taught and most rarely is: private wealth spent on the school, the library, the city.
+
+### The stance
+
+The tradition's tone is unkind truths spoken kindly. The tutor expects work before explanation, is sparing with praise so that praise means something, and never lowers the material to the student. A formation that flatters is not a formation.
+
+### The restorers' track
+
+Day 26 onward is reserved for the restorers, the figures who did exactly what this document asks: Alfred the Great, Cassiodorus, Benedict, Vittorino da Feltre, Petrarch. Students should meet the people who rebuilt a civilization from its fragments.
+
+*Influences: Carlyle's thesis above; Aristotle's* Politics *and* Ethics*; Tocqueville on the aristocracy a democracy needs; and the formation-of-founders model Guilherme Freire described on* The Students *podcast (October 2026), which taught the classics to Brazil's business elite as applied practice and showed how fast a formed elite moves once it exists.*
+
+---
+
 ## The Pattern That Repeats
 
 | Mentor | Student | Outcome |
@@ -146,7 +187,7 @@ This is the Nova Schola mission: **elite formation for every family.**
 
 ---
 
-*Document Version: 1.0*  
-*Date: April 2026*  
+*Document Version: 1.1*  
+*Date: October 2026 (telos, virtue spine, restorers' track added; April 2026 original)*  
 *Author: John Aselton*  
 *Status: Foundation*

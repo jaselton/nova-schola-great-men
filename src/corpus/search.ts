@@ -5,6 +5,7 @@
  * risk vocab are small enough that token overlap with a little prefix
  * matching finds the right exemplum, and the tutor model does the rest.
  */
+import type { SpineVirtue } from "./spine.js";
 import type { AgeRange, Corpus, EraGroup, Profile } from "./types.js";
 import { tokenize } from "./parse.js";
 
@@ -17,6 +18,8 @@ export interface ExemplumQuery {
   struggle?: string;
   era?: EraGroup;
   domain?: string;
+  /** Restrict to figures that exemplify (or warn against) one spine virtue. */
+  spine?: SpineVirtue;
   limit?: number;
 }
 
@@ -171,6 +174,8 @@ export function findExempla(corpus: Corpus, q: ExemplumQuery): ExemplumHit[] {
   for (const f of corpus.figures) {
     if (q.era && f.eraGroup !== q.era) continue;
     if (q.domain && !normalize(f.domain).includes(normalize(q.domain))) continue;
+    const spineEntry = q.spine ? f.spine[q.spine] : undefined;
+    if (q.spine && !spineEntry) continue;
 
     let score = 0;
     const evidence: string[] = [];
@@ -194,7 +199,13 @@ export function findExempla(corpus: Corpus, q: ExemplumQuery): ExemplumHit[] {
     f.research.coreLessons.forEach((t) => consider(t, 1));
     consider(f.subtitle + " " + f.domain, 1);
 
-    if (terms.size === 0) score = 1; // no terms: filter-only query, return everyone matching filters
+    if (spineEntry) {
+      // The spine is curated: a figure listed under the virtue outranks keyword matches.
+      score += 3 * (spineEntry.imitate.length + spineEntry.guard.length);
+      for (const l of spineEntry.imitate) if (evidence.length < 6) evidence.push(`${q.spine}: imitate — ${l}`);
+      for (const l of spineEntry.guard) if (evidence.length < 6) evidence.push(`${q.spine}: guard against — ${l}`);
+    }
+    if (terms.size === 0 && score === 0) score = 1; // filter-only query: return everyone matching filters
     if (score > 0) {
       hits.push({ slug: f.slug, name: f.name, subtitle: f.subtitle, eraGroup: f.eraGroup, domain: f.domain, score, evidence });
     }
