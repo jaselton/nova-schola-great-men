@@ -1,0 +1,55 @@
+{
+  "name": "@nova-schola/great-men",
+  "version": "0.2.0",
+  "description": "Great Men: 25 classical-formation profiles plus a Claude-powered Trivium tutor inference layer for Nova Schola.",
+  "type": "module",
+  "license": "MIT",
+  "author": "John Aselton <john@novaschola.io>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaselton/nova-schola-great-men.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./data/great-men.json": "./data/great-men.json"
+  },
+  "bin": {
+    "nova-tutor": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "profiles",
+    "research",
+    "framework",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:data": "tsx src/corpus/build.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "tutor": "tsx src/cli.ts",
+    "eval": "tsx evals/run.ts",
+    "prepublishOnly": "npm run build:data && npm run build"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
