@@ -399,6 +399,7 @@
 
         let role = 'student';
         let state = null;   // serializable session state returned by the tutor; sent back each turn
+        let stateSig = null; // server signature over that state (when the deployment signs it)
 
         roleSeg.addEventListener('click', (e) => {
             const b = e.target.closest('button[data-role]');
@@ -417,6 +418,7 @@
 
         resetButton.addEventListener('click', () => {
             state = null;
+            stateSig = null;
             lockSetup(false);
             for (const m of [...chatMessages.querySelectorAll('.message')].slice(1)) m.remove();
             suggestions.style.display = '';
@@ -476,7 +478,7 @@
             lockSetup(true);
             showTyping();
             const body = state
-                ? { message: userMessage, state }
+                ? { message: userMessage, state, stateSig }
                 : { message: userMessage, student: { age: Number(ageSelect.value), name: nameInput.value.trim() || undefined, parentMode: role === 'parent' } };
             try {
                 const response = await fetch(ENDPOINT, {
@@ -491,6 +493,7 @@
                 } else {
                     addMessage(data.reply, 'assistant', data.mode);
                     state = data.state;
+                    stateSig = data.stateSig || null;
                 }
             } catch (error) {
                 hideTyping();

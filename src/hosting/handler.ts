@@ -8,7 +8,11 @@
  *   { "message": "...", "state": <state from the previous response> }                     later turns
  *   { "messages": [{ "role": "user"|"assistant", "content": "..." }, ...] }                 legacy /demo page
  * Response
- *   { message, reply, mode, servedBy, refused, usage, state }
+ *   { message, reply, mode, servedBy, refused, usage, state, stateSig? }
+ * With `stateKey` set, `stateSig` must be echoed back alongside `state` on the next turn.
+ *
+ * Caps per request: message length (2000 chars), turns per conversation (40), body size (200 KB),
+ * serialized state (150 KB), tokens generated per model call (4000), tool rounds per turn (4).
  */
 import Anthropic from "@anthropic-ai/sdk";
 import type { Corpus } from "../corpus/types.js";
@@ -33,6 +37,13 @@ export interface HandlerEnv {
   maxToolRounds?: number;
   /** Cap on tokens generated per model call (default 4000; replies are a few sentences). */
   maxTokens?: number;
+  /** Cap on the serialized session state a client may send back (default 150000 chars; input tokens are cost too). */
+  maxStateChars?: number;
+  /**
+   * Secret used to sign the session state (HMAC-SHA256). When set, responses carry `stateSig` and a
+   * request with `state` must return the matching `stateSig`, so a client cannot fabricate history.
+   */
+  stateKey?: string;
   /** Injected for tests. */
   client?: Anthropic;
 }
@@ -46,11 +57,39 @@ interface TutorRequest {
   message?: string;
   student?: StudentProfile;
   state?: TutorState;
+  stateSig?: string;
   messages?: LegacyMessage[];
 }
 
 export const DEFAULT_MAX_MESSAGE_CHARS = 2000;
 export const DEFAULT_MAX_TURNS = 40;
+export const DEFAULT_MAX_STATE_CHARS = 150_000;
+
+const encoder = new TextEncoder();
+
+/** WebCrypto key type without depending on the DOM lib (the handler runs on Node and on Workers). */
+type HmacKey = Awaited<ReturnType<typeof crypto.subtle.importKey>>;
+
+async function hmacKey(secret: string): Promise<HmacKey> {
+  return crypto.subtle.importKey("raw", encoder.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign", "verify"]);
+}
+
+/** Canonical serialization of the state used for signing; the same string is what the client echoes back. */
+export function serializeState(state: TutorState): string {
+  return JSON.stringify(state);
+}
+
+/** HMAC-SHA256 of the serialized state, hex. Works on Node 20+ and Workers (WebCrypto). */
+export async function signState(serialized: string, secret: string): Promise<string> {
+  const sig = await crypto.subtle.sign("HMAC", await hmacKey(secret), encoder.encode(serialized));
+  return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+export async function verifyState(serialized: string, signature: string, secret: string): Promise<boolean> {
+  if (!/^[0-9a-f]{64}$/.test(signature)) return false;
+  const bytes = new Uint8Array(signature.match(/../g)!.map((h) => parseInt(h, 16)));
+  return crypto.subtle.verify("HMAC", await hmacKey(secret), bytes, encoder.encode(serialized));
+}
 
 function corsHeaders(origin: string | null, allowed: string[]): Record<string, string> {
   const allow = allowed.length === 0 ? "*" : origin && allowed.includes(origin) ? origin : allowed[0]!;
@@ -113,6 +152,7 @@ export async function handleTutorRequest(req: Request, env: HandlerEnv): Promise
 
   const maxChars = env.maxMessageChars ?? DEFAULT_MAX_MESSAGE_CHARS;
   const maxTurns = env.maxTurns ?? DEFAULT_MAX_TURNS;
+  const maxStateChars = env.maxStateChars ?? DEFAULT_MAX_STATE_CHARS;
 
   let body: TutorRequest;
   try {
@@ -137,6 +177,12 @@ export async function handleTutorRequest(req: Request, env: HandlerEnv): Promise
       message = typeof body.message === "string" ? body.message.trim() : "";
       if (body.state && body.state.version === 1 && Array.isArray(body.state.messages) && Array.isArray(body.state.turns)) {
         if (body.state.turns.length >= maxTurns) return json({ error: "This conversation has reached its length. Start a new one." }, 400);
+        const serialized = serializeState(body.state);
+        if (serialized.length > maxStateChars) return json({ error: "This conversation has grown too long. Start a new one." }, 413);
+        if (env.stateKey) {
+          const ok = typeof body.stateSig === "string" && (await verifyState(serialized, body.stateSig, env.stateKey));
+          if (!ok) return json({ error: "The conversation state was not recognized. Start a new one." }, 400);
+        }
         tutor = Tutor.fromState({ ...body.state, student: cleanStudent(body.state.student) }, options);
       } else {
         tutor = new Tutor(cleanStudent(body.student), options);
@@ -150,8 +196,10 @@ export async function handleTutorRequest(req: Request, env: HandlerEnv): Promise
 
   try {
     const reply = await tutor.reply(message);
+    const state = tutor.toState();
+    const stateSig = env.stateKey ? await signState(serializeState(state), env.stateKey) : undefined;
     return json(
-      { message: reply.text, reply: reply.text, mode: reply.mode.mode, servedBy: reply.servedBy, refused: reply.refused, usage: reply.usage, state: tutor.toState() },
+      { message: reply.text, reply: reply.text, mode: reply.mode.mode, servedBy: reply.servedBy, refused: reply.refused, usage: reply.usage, state, stateSig },
       200,
     );
   } catch (err) {
