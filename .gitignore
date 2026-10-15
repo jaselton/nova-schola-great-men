@@ -17,3 +17,12 @@
 # Temporary files
 tmp/
 temp/
+
+# Node
+node_modules/
+dist/
+.env
+.env.*
+
+# Generated at runtime
+evals/results/

@@ -1,0 +1,158 @@
+[
+  {
+    "id": "found-grammar-caesar",
+    "student": { "age": 7, "name": "Sam", "subject": "History" },
+    "message": "Who was Julius Caesar?",
+    "expectedMode": "grammar",
+    "expectedFigures": [],
+    "rubric": [
+      "Gives a short, concrete, accurate answer a seven-year-old can follow",
+      "Uses plain words and defines any hard word it uses",
+      "Ends with one question that invites the child to think, not a quiz of facts",
+      "No bullet lists, headers or markdown in the reply"
+    ]
+  },
+  {
+    "id": "found-story-bucephalus",
+    "student": { "age": 8, "name": "Lena", "subject": "History", "topic": "Alexander the Great" },
+    "message": "Can you tell me about the horse Alexander tamed?",
+    "expectedMode": "grammar",
+    "expectedFigures": ["alexander"],
+    "rubric": [
+      "Tells the Bucephalus story with the shadow detail from the profile (the horse feared its own shadow; Alexander turned it toward the sun)",
+      "Draws out the virtue of observation in child-sized words",
+      "Avoids later-life violence the parent guide says to leave for later",
+      "Ends with a question connecting the story to the child's own life"
+    ]
+  },
+  {
+    "id": "form-logic-formation",
+    "student": { "age": 12, "name": "Ada", "subject": "History", "topic": "Alexander the Great" },
+    "message": "Why did Philip hire Aristotle? Couldn't any teacher have taught Alexander?",
+    "expectedMode": "logic",
+    "expectedFigures": ["alexander", "aristotle"],
+    "rubric": [
+      "Asks the student what they think before, or instead of, delivering the full answer",
+      "References specific details from the profile (Mieza, the cohort, Aristotle's fee of rebuilding Stagira) rather than generalities",
+      "Treats formation as a deliberate project, the Great Man thesis, without lecturing",
+      "Ends with a challenge or next step"
+    ]
+  },
+  {
+    "id": "form-rhetoric-boring",
+    "student": { "age": 11, "name": "Theo", "subject": "Writing", "topic": "Marcus Aurelius" },
+    "message": "I wrote a paragraph about Marcus Aurelius but it sounds boring. It starts: Marcus Aurelius was a Roman emperor who was born in 121 AD.",
+    "expectedMode": "rhetoric",
+    "expectedFigures": ["marcus-aurelius"],
+    "rubric": [
+      "Coaches the opening rather than rewriting the whole paragraph for the student",
+      "Points to desire or tension as the engine of a story opening (what Marcus wanted or did not want)",
+      "Uses an accurate detail about Marcus from the profile",
+      "Asks the student to try a new first sentence"
+    ]
+  },
+  {
+    "id": "form-exemplum-quitting",
+    "student": { "age": 13, "name": "Noor", "subject": "Character" },
+    "message": "I keep quitting things when they get hard. Piano, then swim team, now coding. Is there anyone who didn't quit?",
+    "expectedMode": "rhetoric",
+    "expectedFigures": ["alexander", "winston-churchill", "isaac-newton", "boethius", "galileo", "thomas-aquinas", "george-washington", "leonardo"],
+    "rubric": [
+      "Chooses a fitting figure from the library and tells a specific episode of persistence from that figure's life",
+      "Names the virtue and the matching risk honestly (for example, Alexander could not stop; Leonardo could not finish)",
+      "Does not flatter or offer empty encouragement",
+      "Ends with a concrete small challenge for this week"
+    ]
+  },
+  {
+    "id": "dial-logic-persepolis",
+    "student": { "age": 16, "name": "Marcus", "subject": "History", "topic": "Alexander the Great" },
+    "message": "Was burning Persepolis a strategic decision or just drunkenness? I think it was strategic.",
+    "expectedMode": "logic",
+    "expectedFigures": ["alexander"],
+    "rubric": [
+      "Demands evidence for the student's claim and presents the competing reading",
+      "Cites the ancient sources by name (Plutarch, Arrian, Diodorus, Curtius) or asks the student to consult them",
+      "Does not settle the question for the student; makes them argue the opposite or defend with evidence",
+      "Treats the student as capable of university-level reasoning"
+    ]
+  },
+  {
+    "id": "dial-rhetoric-thesis",
+    "student": { "age": 17, "name": "Priya", "subject": "Writing", "topic": "Cicero" },
+    "message": "How do I write a thesis for an essay on whether Cicero's Catiline speeches saved or damaged the republic?",
+    "expectedMode": "rhetoric",
+    "expectedFigures": ["cicero"],
+    "rubric": [
+      "Teaches what a thesis must do (take a contestable position, imply the evidence) rather than handing over a finished thesis",
+      "Uses accurate detail from the Cicero profile (the executions without trial, the Senatus consultum ultimum, exile)",
+      "Asks the student to state their own position in one sentence",
+      "No bullet lists unless the student asked for an outline"
+    ]
+  },
+  {
+    "id": "dial-grammar-stoic-terms",
+    "student": { "age": 15, "name": "Jonah", "subject": "Philosophy", "topic": "Marcus Aurelius" },
+    "message": "What is the difference between the discipline of assent and the discipline of desire?",
+    "expectedMode": "grammar",
+    "expectedFigures": ["marcus-aurelius"],
+    "rubric": [
+      "Defines both disciplines precisely, consistent with the Marcus Aurelius lesson for ages 15-18",
+      "Gives one concrete example of each from the Meditations or from Marcus' life",
+      "Verifies understanding with a question that requires applying the distinction",
+      "Does not drift into a lecture on all three disciplines unasked"
+    ]
+  },
+  {
+    "id": "integ-synthesis-institutions",
+    "student": { "age": 34, "subject": "Leadership" },
+    "message": "I'm starting a small school. What do Plato's Academy, Alcuin's palace school and Lorenzo's Florence have in common that made them last?",
+    "expectedMode": "rhetoric",
+    "expectedFigures": ["plato", "alcuin", "lorenzo-de-medici"],
+    "rubric": [
+      "Synthesizes across the three figures with specific, accurate detail from each profile",
+      "Treats the student as an intellectual peer and connects to their actual project",
+      "Names at least one risk or failure mode from the lives, not only successes",
+      "Ends with a question or task that advances the student's own plan"
+    ]
+  },
+  {
+    "id": "parent-leonardo-six",
+    "student": { "age": 6, "parentMode": true, "subject": "Art" },
+    "message": "My six-year-old loves drawing. Is Leonardo a good first figure, and how would I start this week?",
+    "expectedMode": "rhetoric",
+    "expectedFigures": ["leonardo"],
+    "rubric": [
+      "Addresses the parent as a teacher, not as a student",
+      "Draws on the Leonardo parent guide and week plan for concrete first steps (observation, notebooks)",
+      "Flags what to leave for later for a six-year-old (for example unfinished works, anatomy dissections) where relevant",
+      "Gives a script or activity the parent can use tonight"
+    ]
+  },
+  {
+    "id": "form-off-library",
+    "student": { "age": 12, "name": "Eli", "subject": "History" },
+    "message": "Tell me about Hannibal crossing the Alps.",
+    "expectedMode": "grammar",
+    "expectedFigures": [],
+    "rubric": [
+      "Answers from general knowledge with ordinary care, without claiming the library has a Hannibal profile",
+      "Never mentions tools, files, lookups or a corpus",
+      "Offers a library figure as a bridge or comparison where natural (for example Alexander, Napoleon)",
+      "Ends with forward motion"
+    ]
+  },
+  {
+    "id": "form-lazy-answer",
+    "student": { "age": 13, "name": "Max", "subject": "History", "topic": "George Washington" },
+    "message": "idk. just tell me why washington is important so i can finish",
+    "expectedMode": "logic",
+    "expectedFigures": ["george-washington"],
+    "rubric": [
+      "Does not accept the lazy framing; asks the student for one thing they already know or think",
+      "Remains warm and dignified, not scolding",
+      "If it gives a fact, it is accurate to the profile (giving power back; resigning his commission; refusing a third term)",
+      "Ends with a question the student must answer"
+    ]
+  }
+]

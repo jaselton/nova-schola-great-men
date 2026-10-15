@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Aristotle — Nova Schola AI Tutor</title>
+    <meta name="description" content="A classical tutor formed on twenty-five great lives. Ask about history, virtue, mathematics, or the natural world, and learn as Alexander once learned.">
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-warm: #F5F3ED;
+            --bg-dark: #1A1A1A;
+            --bg-forest: #0A1F14;
+            --gold: #C9A227;
+            --gold-light: #E8C547;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --text-muted: #7A7A7A;
+            --text-inverse: #FAFAFA;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-forest);
+            color: var(--text-inverse);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Navigation */
+        nav {
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,31,20,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(201,162,39,0.2);
+        }
+        
+        .nav-logo {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-inverse);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-back {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .nav-back:hover { color: var(--gold); }
+        
+        /* Main container */
+        .demo-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Header */
+        .demo-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-header h1 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+        
+        .demo-header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Chat container */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(201,162,39,0.2);
+            overflow: hidden;
+            min-height: 500px;
+        }
+        
+        /* Chat messages */
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .message.assistant {
+            align-self: flex-start;
+            background: rgba(201,162,39,0.15);
+            border: 1px solid rgba(201,162,39,0.3);
+            color: var(--text-inverse);
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-inverse);
+        }
+        
+        .message.system {
+            align-self: center;
+            background: transparent;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        .message .sender {
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+        
+        .message.user .sender {
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Typing indicator */
+        .typing {
+            display: flex;
+            gap: 4px;
+            padding: 0.5rem 0;
+        }
+        
+        .typing span {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing span:nth-child(2) { animation-delay: 0.2s; }
+        .typing span:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Chat input */
+        .chat-input-container {
+            padding: 1rem;
+            border-top: 1px solid rgba(201,162,39,0.2);
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .chat-input-form {
+            display: flex;
+            gap: 0.75rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: var(--text-inverse);
+            font-size: 0.95rem;
+            font-family: var(--font-sans);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .chat-input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+        
+        .chat-input:focus {
+            border-color: var(--gold);
+        }
+        
+        .chat-submit {
+            padding: 0.875rem 1.5rem;
+            background: var(--gold);
+            color: var(--bg-dark);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .chat-submit:hover {
+            background: var(--gold-light);
+        }
+        
+        .chat-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Suggestions */
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-top: 1px solid rgba(201,162,39,0.1);
+        }
+        
+        .suggestion {
+            padding: 0.5rem 0.875rem;
+            background: rgba(201,162,39,0.1);
+            border: 1px solid rgba(201,162,39,0.2);
+            border-radius: 20px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .suggestion:hover {
+            background: rgba(201,162,39,0.2);
+            border-color: var(--gold);
+            color: var(--text-inverse);
+        }
+        
+        /* CTA Section */
+        .demo-cta {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .demo-cta p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background: var(--gold);
+            color: var(--bg-dark);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .cta-button:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .demo-container { padding: 1rem; }
+            .demo-header h1 { font-size: 1.5rem; }
+            .message { max-width: 90%; }
+            .chat-input-form { flex-direction: column; }
+            .chat-submit { width: 100%; }
+        }
+
+        /* --- tutor setup bar and trivium chips (v3) --- */
+        .setup { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: center; margin: 0 0 1.25rem; font-family: var(--font-sans); font-size: 0.9rem; color: var(--text-secondary); }
+        .setup label { display: flex; align-items: center; gap: 0.4rem; }
+        .setup select, .setup input[type="text"] { font-family: var(--font-sans); font-size: 0.9rem; padding: 0.4rem 0.6rem; border: 1px solid #d9d4c7; border-radius: 6px; background: #fff; color: var(--text-primary); }
+        .setup input[type="text"] { width: 9rem; }
+        .setup .seg { display: inline-flex; border: 1px solid #d9d4c7; border-radius: 6px; overflow: hidden; }
+        .setup .seg button { font-family: var(--font-sans); font-size: 0.85rem; padding: 0.4rem 0.75rem; border: 0; background: #fff; color: var(--text-secondary); cursor: pointer; }
+        .setup .seg button.active { background: var(--bg-forest); color: var(--text-inverse); }
+        .setup .reset { background: none; border: 0; color: var(--gold); cursor: pointer; font-family: var(--font-sans); font-size: 0.85rem; text-decoration: underline; }
+        .message .mode { display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.45rem; border-radius: 999px; font-family: var(--font-sans); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); vertical-align: middle; }
+        .message .content p { margin: 0 0 0.6rem; }
+        .message .content p:last-child { margin-bottom: 0; }
+        .demo-note { font-family: var(--font-sans); font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="https://novaschola.io/" class="nav-logo">NOVA SCHOLA</a>
+        <a href="https://novaschola.io/" class="nav-back">← Back to Home</a>
+    </nav>
+
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>Meet Aristotle</h1>
+            <p>A tutor in the classical tradition, formed on twenty-five great lives. Tell him who is learning, then ask about history, virtue, mathematics, or the natural world — and learn as Alexander once learned.</p>
+        </div>
+
+        <div class="setup" id="setup">
+            <span class="seg" id="roleSeg">
+                <button type="button" data-role="student" class="active">I am the student</button>
+                <button type="button" data-role="parent">I am a parent</button>
+            </span>
+            <label>Age <select id="age">
+                <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                <option value="11">11</option><option value="12" selected>12</option><option value="13">13</option><option value="14">14</option>
+                <option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
+                <option value="25">Adult</option>
+            </select></label>
+            <label>Name <input type="text" id="name" placeholder="optional" maxlength="40" autocomplete="off"></label>
+            <button type="button" class="reset" id="reset" hidden>Start over</button>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message assistant">
+                    <div class="sender">Aristotle</div>
+                    <div class="content">Welcome. I am Aristotle of Stagira — philosopher, teacher, and once the tutor of Alexander, who would become great. Tell me your age above, so that I may teach you as you are, and then ask. History, virtue, mathematics, the natural world: all of it can be learned, and learned well.</div>
+                </div>
+            </div>
+
+            <div class="suggestions" id="suggestions">
+                <button class="suggestion" data-prompt="Who was Alexander the Great?">Who was Alexander the Great?</button>
+                <button class="suggestion" data-prompt="I keep quitting things when they get hard. Is there anyone who didn't quit?">I keep quitting things</button>
+                <button class="suggestion" data-prompt="Why did Philip hire Aristotle to teach his son?">Why did Philip hire Aristotle?</button>
+                <button class="suggestion" data-prompt="What makes a good leader?">What makes a good leader?</button>
+                <button class="suggestion" data-prompt="How do I write a strong opening sentence for my essay on Marcus Aurelius?">Help with my essay opening</button>
+            </div>
+
+            <div class="chat-input-container">
+                <form class="chat-input-form" id="chatForm">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Ask Aristotle anything..." autocomplete="off" maxlength="2000">
+                    <button type="submit" class="chat-submit" id="chatSubmit">Send</button>
+                </form>
+            </div>
+        </div>
+        <p class="demo-note">Conversations are not stored. The small tag beside each reply names the mode of the trivium the tutor is working in: grammar, logic, or rhetoric.</p>
+
+        <div class="demo-cta">
+            <p>Ready for your child to learn from the greatest minds in history?</p>
+            <a href="https://novaschola.io/#early-access" class="cta-button">Request Early Access</a>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const chatSubmit = document.getElementById('chatSubmit');
+        const suggestions = document.getElementById('suggestions');
+        const ageSelect = document.getElementById('age');
+        const nameInput = document.getElementById('name');
+        const roleSeg = document.getElementById('roleSeg');
+        const resetButton = document.getElementById('reset');
+        const ENDPOINT = '/api/tutor';
+
+        let role = 'student';
+        let state = null;   // serializable session state returned by the tutor; sent back each turn
+        let stateSig = null; // server signature over that state (when the deployment signs it)
+
+        roleSeg.addEventListener('click', (e) => {
+            const b = e.target.closest('button[data-role]');
+            if (!b || state) return;
+            role = b.dataset.role;
+            for (const x of roleSeg.querySelectorAll('button')) x.classList.toggle('active', x === b);
+            chatInput.placeholder = role === 'parent' ? 'Ask how to teach your child...' : 'Ask Aristotle anything...';
+        });
+
+        function lockSetup(locked) {
+            ageSelect.disabled = locked;
+            nameInput.disabled = locked;
+            for (const x of roleSeg.querySelectorAll('button')) x.disabled = locked;
+            resetButton.hidden = !locked;
+        }
+
+        resetButton.addEventListener('click', () => {
+            state = null;
+            stateSig = null;
+            lockSetup(false);
+            for (const m of [...chatMessages.querySelectorAll('.message')].slice(1)) m.remove();
+            suggestions.style.display = '';
+            chatInput.focus();
+        });
+
+        function addMessage(content, who, mode) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${who}`;
+            if (who !== 'system') {
+                const senderDiv = document.createElement('div');
+                senderDiv.className = 'sender';
+                senderDiv.textContent = who === 'assistant' ? 'Aristotle' : 'You';
+                if (mode) {
+                    const chip = document.createElement('span');
+                    chip.className = 'mode';
+                    chip.textContent = mode;
+                    senderDiv.appendChild(chip);
+                }
+                messageDiv.appendChild(senderDiv);
+            }
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'content';
+            for (const para of String(content).split(/\n\s*\n/)) {
+                const p = document.createElement('p');
+                p.textContent = para.trim();
+                if (p.textContent) contentDiv.appendChild(p);
+            }
+            messageDiv.appendChild(contentDiv);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return messageDiv;
+        }
+
+        function showTyping() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message assistant';
+            typingDiv.id = 'typing';
+            const senderDiv = document.createElement('div');
+            senderDiv.className = 'sender';
+            senderDiv.textContent = 'Aristotle';
+            typingDiv.appendChild(senderDiv);
+            const dotsDiv = document.createElement('div');
+            dotsDiv.className = 'typing';
+            dotsDiv.innerHTML = '<span></span><span></span><span></span>';
+            typingDiv.appendChild(dotsDiv);
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        function hideTyping() { const t = document.getElementById('typing'); if (t) t.remove(); }
+
+        async function sendMessage(userMessage) {
+            chatSubmit.disabled = true;
+            chatInput.disabled = true;
+            addMessage(userMessage, 'user');
+            suggestions.style.display = 'none';
+            lockSetup(true);
+            showTyping();
+            const body = state
+                ? { message: userMessage, state, stateSig }
+                : { message: userMessage, student: { age: Number(ageSelect.value), name: nameInput.value.trim() || undefined, parentMode: role === 'parent' } };
+            try {
+                const response = await fetch(ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                const data = await response.json();
+                hideTyping();
+                if (!response.ok || data.error) {
+                    addMessage(data.error || 'I am momentarily unable to respond. Please try again.', 'system');
+                } else {
+                    addMessage(data.reply, 'assistant', data.mode);
+                    state = data.state;
+                    stateSig = data.stateSig || null;
+                }
+            } catch (error) {
+                hideTyping();
+                addMessage('I apologize, but I am momentarily unable to respond. Please try again.', 'system');
+            }
+            chatSubmit.disabled = false;
+            chatInput.disabled = false;
+            chatInput.focus();
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (message) { chatInput.value = ''; sendMessage(message); }
+        });
+        suggestions.addEventListener('click', (e) => {
+            if (e.target.classList.contains('suggestion')) sendMessage(e.target.dataset.prompt);
+        });
+        chatInput.focus();
+    </script>
+</body>
+</html>
