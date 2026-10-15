@@ -6,7 +6,7 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { z } from "zod";
-import { readCorpusFile, REPO_ROOT } from "../corpus/index.js";
+import { isCorpusPath, readCorpusFile, REPO_ROOT } from "../corpus/index.js";
 import { splitSections } from "../corpus/parse.js";
 import { ageRangeFor, findExempla, findProfile } from "../corpus/search.js";
 import { SPINE_ORDER } from "../corpus/spine.js";
@@ -101,9 +101,19 @@ function sectionOf(markdown: string, wanted?: string): string {
   return `No section matching "${wanted}". Sections: ${sections.map((s) => s.title).join(" | ")}`;
 }
 
+/** Reads a repo-relative corpus file (profiles/..., research/..., framework/...). Async so hosts without a filesystem can fetch. */
+export type CorpusFileReader = (relPath: string) => Promise<string>;
+
+/** The default reader: the repository on disk. */
+export function nodeCorpusReader(root = REPO_ROOT): CorpusFileReader {
+  return async (rel) => readCorpusFile(rel, root);
+}
+
 export interface ToolOptions {
-  /** Repo root that holds profiles/ and research/. */
+  /** Repo root that holds profiles/ and research/ (used by the default reader). */
   root?: string;
+  /** How to read lesson, guide and essay files; defaults to the filesystem under `root`. */
+  readFile?: CorpusFileReader;
   /** Lesson range used when the model omits age_range (from the student's band). */
   defaultAgeRange?: AgeRange;
 }
@@ -111,6 +121,11 @@ export interface ToolOptions {
 /** Build the tutor's tool set, sorted by name for a stable prefix. */
 export function makeTutorTools(corpus: Corpus, options: ToolOptions = {}): TutorTool[] {
   const root = options.root ?? REPO_ROOT;
+  const rawReader = options.readFile ?? nodeCorpusReader(root);
+  const read: CorpusFileReader = async (rel) => {
+    if (!isCorpusPath(rel)) throw new Error(`Refusing to read outside the corpus: ${rel}`);
+    return rawReader(rel);
+  };
   const defaultRange = options.defaultAgeRange ?? "11-14";
   const resolve = (figure: string) => findProfile(corpus, figure);
 
@@ -149,7 +164,7 @@ export function makeTutorTools(corpus: Corpus, options: ToolOptions = {}): Tutor
         case "research_summary":
           return researchSummary(p);
         case "research_full":
-          return readCorpusFile(p.research.path, root);
+          return read(p.research.path);
         default:
           return profileOverview(p);
       }
@@ -194,7 +209,7 @@ export function makeTutorTools(corpus: Corpus, options: ToolOptions = {}): Tutor
       const p = resolve(figure);
       if (!p) return notFound(corpus, figure);
       const range = age_range ?? defaultRange;
-      return sectionOf(readCorpusFile(p.lessons[range].path, root), section);
+      return sectionOf(await read(p.lessons[range].path), section);
     },
   });
 
@@ -230,7 +245,7 @@ export function makeTutorTools(corpus: Corpus, options: ToolOptions = {}): Tutor
     run: async ({ figure, section }) => {
       const p = resolve(figure);
       if (!p) return notFound(corpus, figure);
-      return sectionOf(readCorpusFile(p.parentGuide.path, root), section);
+      return sectionOf(await read(p.parentGuide.path), section);
     },
   });
 
@@ -244,7 +259,7 @@ export function makeTutorTools(corpus: Corpus, options: ToolOptions = {}): Tutor
     run: async ({ figure, section }) => {
       const p = resolve(figure);
       if (!p) return notFound(corpus, figure);
-      return sectionOf(readCorpusFile(p.weekPlan.path, root), section);
+      return sectionOf(await read(p.weekPlan.path), section);
     },
   });
 

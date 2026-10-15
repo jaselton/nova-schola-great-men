@@ -19,7 +19,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./data/great-men.json": "./data/great-men.json"
+    "./data/great-men.json": "./data/great-men.json",
+    "./package.json": "./package.json"
   },
   "bin": {
     "nova-tutor": "./dist/cli.js",
@@ -42,7 +43,8 @@
     "tutor": "tsx src/cli.ts",
     "eval": "tsx evals/run.ts",
     "prepublishOnly": "npm run build:data && npm run build",
-    "mcp": "tsx src/mcp/server.ts"
+    "mcp": "tsx src/mcp/server.ts",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.133.0",

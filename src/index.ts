@@ -6,3 +6,4 @@
  */
 export * from "./corpus/index.js";
 export * from "./inference/index.js";
+export * from "./hosting/handler.js";

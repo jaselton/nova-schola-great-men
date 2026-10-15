@@ -10,9 +10,18 @@ export * from "./search.js";
 export * from "./spine.js";
 export { listFigureSlugs, parseCorpus, parseProfile, splitSections, stripMarkdown, tokenize } from "./parse.js";
 
-const here = dirname(fileURLToPath(import.meta.url));
-/** Repo root whether running from `src/` (tsx) or `dist/` (compiled). */
-export const REPO_ROOT = resolve(here, "..", "..");
+function detectRepoRoot(): string {
+  // import.meta.url is a file URL under Node; under a bundler for Workers it may be absent or synthetic.
+  try {
+    const here = dirname(fileURLToPath(import.meta.url));
+    return resolve(here, "..", "..");
+  } catch {
+    return ".";
+  }
+}
+
+/** Repo root whether running from `src/` (tsx) or `dist/` (compiled); "." where there is no filesystem. */
+export const REPO_ROOT = detectRepoRoot();
 
 /**
  * Load the corpus. Prefers the committed `data/great-men.json` (fast, no
@@ -28,11 +37,14 @@ export function loadCorpus(root = REPO_ROOT): Corpus {
   return parseCorpus(root);
 }
 
-/** Read a repo-relative markdown file (profile lesson, parent guide, research essay). */
-export function readCorpusFile(relPath: string, root = REPO_ROOT): string {
+/** True for the repo-relative paths the tutor may read (no traversal, corpus directories only). */
+export function isCorpusPath(relPath: string): boolean {
   const safe = relPath.replace(/\\/g, "/");
-  if (safe.includes("..") || !/^(profiles|research|framework)\//.test(safe)) {
-    throw new Error(`Refusing to read outside the corpus: ${relPath}`);
-  }
-  return readFileSync(join(root, safe), "utf8");
+  return !safe.includes("..") && /^(profiles|research|framework)\/[A-Za-z0-9._/-]+\.(md|json)$/.test(safe);
+}
+
+/** Read a repo-relative markdown file (profile lesson, parent guide, research essay) from disk. */
+export function readCorpusFile(relPath: string, root = REPO_ROOT): string {
+  if (!isCorpusPath(relPath)) throw new Error(`Refusing to read outside the corpus: ${relPath}`);
+  return readFileSync(join(root, relPath.replace(/\\/g, "/")), "utf8");
 }

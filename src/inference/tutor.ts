@@ -15,9 +15,9 @@ import type { Corpus } from "../corpus/types.js";
 import { BANDS, bandForAge, type Band } from "./bands.js";
 import { addUsage, emptyUsage, FALLBACK_BETA, resolveModel, type Effort, type ModelSpec, type UsageTotals } from "./models.js";
 import { buildSystemPrompt, PROMPT_VERSION, studentContextBlock, type StudentContext } from "./prompt.js";
-import { buildCodexPrompt, runCodexTurn, type CodexTurnOptions } from "./codex.js";
+import type { CodexTurnOptions } from "./codex.js";
 import { classifyMode, detectModeHeuristic, type ModeGuess } from "./router.js";
-import { makeTutorTools, type TutorTool } from "./tools.js";
+import { makeTutorTools, type CorpusFileReader, type TutorTool } from "./tools.js";
 
 type BetaMessageParam = Anthropic.Beta.Messages.BetaMessageParam;
 type BetaMessage = Anthropic.Beta.Messages.BetaMessage;
@@ -51,6 +51,8 @@ export interface TutorOptions {
   corpus?: Corpus;
   /** Repo root that holds profiles/ and research/ (defaults to this package). */
   root?: string;
+  /** How the tools read lesson, guide and essay files; defaults to the filesystem under `root`. Required where there is no filesystem. */
+  readFile?: CorpusFileReader;
   /** Model tier ("tutor", "fast", "frontier") or a raw model id. Default: tutor = Claude Opus 5.5. */
   model?: string;
   /** Overrides the band's default effort. */
@@ -145,7 +147,7 @@ export class Tutor {
     this.tools =
       options.tools === false
         ? []
-        : makeTutorTools(this.corpus, { root: options.root ?? REPO_ROOT, defaultAgeRange: BANDS[this.band].lessonRange });
+        : makeTutorTools(this.corpus, { root: options.root ?? REPO_ROOT, readFile: options.readFile, defaultAgeRange: BANDS[this.band].lessonRange });
     this.system = buildSystemPrompt(this.corpus, this.band, {
       parentMode: student.parentMode,
       operatorNotes: options.operatorNotes,
@@ -313,6 +315,8 @@ export class Tutor {
 
   /** Codex backend: one `codex exec` per turn, transcript replayed, library served over MCP. */
   private async replyViaCodex(userText: string, options: ReplyOptions): Promise<TutorReply> {
+    // Loaded on demand: the Codex backend needs child_process, which hosts without Node (Workers) do not have.
+    const { buildCodexPrompt, runCodexTurn } = await import("./codex.js");
     const ctx: StudentContext = { ...this.student, band: this.band };
     const prompt = buildCodexPrompt({
       systemText: this.system.map((b) => b.text).join("\n\n"),
