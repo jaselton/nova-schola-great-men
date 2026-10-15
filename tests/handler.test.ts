@@ -60,7 +60,7 @@ describe("handleTutorRequest", () => {
     expect(b1.message).toBe(b1.reply);
     expect(b1.state.turns.length).toBe(1);
     expect(b1.state.band).toBe("foundational");
-    expect(b1.state.student.name).toBe("Samscript");
+    expect(b1.state.student.name).toBe("Sam script");
     expect(reads).toEqual(["profiles/alexander/student-ages-8-10.md"]);
     const toolResult = (calls[1]!.messages as Array<{ content: Array<{ type: string; content?: string }> }>)[2]!.content[0]!;
     expect(toolResult.content).toContain("Shadow-Horse");

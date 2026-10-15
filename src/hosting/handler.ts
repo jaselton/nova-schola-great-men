@@ -31,6 +31,8 @@ export interface HandlerEnv {
   maxMessageChars?: number;
   maxTurns?: number;
   maxToolRounds?: number;
+  /** Cap on tokens generated per model call (default 4000; replies are a few sentences). */
+  maxTokens?: number;
   /** Injected for tests. */
   client?: Anthropic;
 }
@@ -122,7 +124,7 @@ export async function handleTutorRequest(req: Request, env: HandlerEnv): Promise
   }
 
   const client = env.client ?? new Anthropic({ apiKey: env.apiKey });
-  const options = { client, corpus: env.corpus, readFile: env.readFile, model: env.model ?? "tutor", maxToolRounds: env.maxToolRounds ?? 4 };
+  const options = { client, corpus: env.corpus, readFile: env.readFile, model: env.model ?? "tutor", maxToolRounds: env.maxToolRounds ?? 4, maxTokens: env.maxTokens ?? 4000 };
 
   let tutor: Tutor;
   let message: string;
